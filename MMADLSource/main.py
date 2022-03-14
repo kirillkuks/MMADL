@@ -1,9 +1,10 @@
 import argparse
 
-from MMADLParser import MMADLParser
+from MMADLPreParser import MMADLPreParser
+from antlr4 import *
 
 
-def parse_argv() -> MMADLParser.ParserParams:
+def parse_argv() -> MMADLPreParser.ParserParams:
     args_parser = argparse.ArgumentParser()
     args_parser.add_argument('-i', '--input', help='input filename')
     args_parser.add_argument('-t', '--type', help='program type')
@@ -18,11 +19,15 @@ def parse_argv() -> MMADLParser.ParserParams:
 def main(parser_args: argparse.Namespace):
     assert parser_args is not None
 
-    parser = MMADLParser.create(parser_args)
+    parser = MMADLPreParser.create(parser_args)
 
     assert parser is not None
 
-    parser.MMADL_to_temp()
+    temp_code = parser.MMADL_to_temp()
+
+    f = open('temp_code.txt', 'w')
+    f.write(temp_code)
+    f.close()
 
 
 if __name__ == '__main__':

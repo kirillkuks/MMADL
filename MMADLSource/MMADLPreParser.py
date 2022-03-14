@@ -65,7 +65,7 @@ class Rule:
         self._right = right
 
 # Обработать ошибки
-class MMADLParser:
+class MMADLPreParser:
     class ParserParams:
         class TYPE(Enum):
             ALGORITHM = 0,
@@ -91,35 +91,35 @@ class MMADLParser:
         _python = 'python'
 
         @staticmethod
-        def create(filename: str, type: str, target_platform: str, style: str) -> MMADLParser.ParserParams:
-            t = MMADLParser.ParserParams.TYPE.ALGORITHM
-            p = MMADLParser.ParserParams.TARGET_PLATFORM.TEX
-            s = MMADLParser.ParserParams.STYLE.DOUBLE
+        def create(filename: str, type: str, target_platform: str, style: str) -> MMADLPreParser.ParserParams:
+            t = MMADLPreParser.ParserParams.TYPE.ALGORITHM
+            p = MMADLPreParser.ParserParams.TARGET_PLATFORM.TEX
+            s = MMADLPreParser.ParserParams.STYLE.DOUBLE
 
-            if type == MMADLParser.ParserParams._algorithm or type is None:
-                t = MMADLParser.ParserParams.TYPE.ALGORITHM
-            elif type == MMADLParser.ParserParams._fragment:
-                t = MMADLParser.ParserParams.TYPE.FRAGMENT
-            elif type == MMADLParser.ParserParams._expression:
-                t = MMADLParser.ParserParams.TYPE.EXPRESSION
+            if type == MMADLPreParser.ParserParams._algorithm or type is None:
+                t = MMADLPreParser.ParserParams.TYPE.ALGORITHM
+            elif type == MMADLPreParser.ParserParams._fragment:
+                t = MMADLPreParser.ParserParams.TYPE.FRAGMENT
+            elif type == MMADLPreParser.ParserParams._expression:
+                t = MMADLPreParser.ParserParams.TYPE.EXPRESSION
             else:
                 assert(False)
 
-            if target_platform == MMADLParser.ParserParams._tex or target_platform is None:
-                p = MMADLParser.ParserParams.TARGET_PLATFORM.TEX
-            elif target_platform == MMADLParser.ParserParams._html:
-                p = MMADLParser.ParserParams.TARGET_PLATFORM.HTML
+            if target_platform == MMADLPreParser.ParserParams._tex or target_platform is None:
+                p = MMADLPreParser.ParserParams.TARGET_PLATFORM.TEX
+            elif target_platform == MMADLPreParser.ParserParams._html:
+                p = MMADLPreParser.ParserParams.TARGET_PLATFORM.HTML
             else:
                 assert(False)
 
-            if style == MMADLParser.ParserParams._double or style is None:
-                s = MMADLParser.ParserParams.STYLE.DOUBLE
-            elif style == MMADLParser.ParserParams._python:
-                s = MMADLParser.ParserParams.STYLE.PYTHON
+            if style == MMADLPreParser.ParserParams._double or style is None:
+                s = MMADLPreParser.ParserParams.STYLE.DOUBLE
+            elif style == MMADLPreParser.ParserParams._python:
+                s = MMADLPreParser.ParserParams.STYLE.PYTHON
             else:
                 assert(False)
 
-            return MMADLParser.ParserParams(filename, t, p, s)
+            return MMADLPreParser.ParserParams(filename, t, p, s)
 
         def __init__(self, filename: str, type: TYPE, target_platform: TARGET_PLATFORM, style: STYLE) -> None:
             self._filename = filename
@@ -128,10 +128,10 @@ class MMADLParser:
             self._style = style
 
     @staticmethod
-    def create(args: Namespace) -> MMADLParser:
-        params = MMADLParser.ParserParams.create(args.input, args.type, args.platform, args.style)
+    def create(args: Namespace) -> MMADLPreParser:
+        params = MMADLPreParser.ParserParams.create(args.input, args.type, args.platform, args.style)
 
-        return MMADLParser(params) if params is not None else None
+        return MMADLPreParser(params) if params is not None else None
 
     def __init__(self, params: ParserParams) -> None:
         self._params = params
