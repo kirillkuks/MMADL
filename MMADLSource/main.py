@@ -1,10 +1,11 @@
 import argparse
+import codecs
 
 from MMADLPreParser import MMADLPreParser
 from antlr4 import *
 
 
-def parse_argv() -> MMADLPreParser.ParserParams:
+def parse_argv() -> argparse.Namespace:
     args_parser = argparse.ArgumentParser()
     args_parser.add_argument('-i', '--input', help='input filename')
     args_parser.add_argument('-t', '--type', help='program type')
@@ -25,9 +26,8 @@ def main(parser_args: argparse.Namespace):
 
     temp_code = parser.MMADL_to_temp()
 
-    f = open('temp_code.txt', 'w')
-    f.write(temp_code)
-    f.close()
+    with codecs.open('temp.txt', 'w', 'utf_8_sig') as f:
+        f.write(temp_code)
 
 
 if __name__ == '__main__':
