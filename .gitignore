@@ -1,4 +1,5 @@
 /MMADLSource/.venv
 /MMADLSource/__pycache__
 /MMADLSource/.antlr
-/MMADLSource/ANTLR
+
+/MMADLSource/ANTLR/__pycache__
