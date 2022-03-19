@@ -1,6 +1,6 @@
 ﻿
-	Вход: множества A и B, которые заданы указателями a и b // a: \pointer elem_t, b: \pointer elem_t
-	Выход: true, если A in B, в противном случае false // bool
+	Вход: a: \pointer elem_t, b: \pointer elem_t
+	Выход: bool
 	
 	pa <- a; pb <- b 
 	
@@ -19,6 +19,6 @@
 	pb <- pb.n 
 		end if
 	end while 
-	$$ Просто текст $$
+	<\cb> Просто текст <\ce>
 	
 	return pa = nil  

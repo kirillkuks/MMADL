@@ -149,7 +149,6 @@ class MMADLPreParser:
             next = self._find_next_rule()
 
         temp_code = self._build_temp_from_rules()
-        print(temp_code)
         return temp_code
 
     def _find_next_rule(self) -> bool:

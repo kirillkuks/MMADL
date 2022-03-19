@@ -1,11 +1,11 @@
 grammar MMADL;
 
-programm
+mmadl
     : (header)? body
     ;
 
 header
-    : require input_params newline ensure output_params
+    : require input_params ensure output_params
     ;
 
 require
@@ -26,17 +26,16 @@ param_name
     : STRING
     ;
 param_type
-    : STRING
+    : POINTER? STRING
     ;
 
 body
     : (operators_list
-    | comment
-    | newline)*
+    | comment)*
     ;
 
 comment
-    : STRING
+    : OPENCOMMENT CUSTOM_STRING CLOSECOMMENT
     ;
 
 operators_list
@@ -67,6 +66,7 @@ var_definition_operator
 expression
     : math_expression
     | function_call
+    | known_lexem
     ;
 
 exit_operator
@@ -78,7 +78,8 @@ loop_control_operator
     ;
 
 math_expression
-    : MATH_EXPRESSION_SIGN STRING MATH_EXPRESSION_SIGN
+    : (MATH_EXPRESSION_SIGN STRING MATH_EXPRESSION_SIGN)
+    | NUMBER
     ;
 function_call
     : STRING variables_list
@@ -88,31 +89,117 @@ variables_list
     : (param_name COMMA?)*
     ;
 
+known_lexem
+    : bool_value
+    | NIL
+    ;
+bool_value
+    : FALSE
+    | TRUE
+    ;
+
 composite_operator
-    : STRING
+    : if_operator
+    | loop_operator
+    ;
+if_operator
+    : IF condition THEN 
+    body
+    (ELSEIF condition THEN
+    body)*
+    ENDIF
+    ;
+loop_operator
+    : (WHILE condition DO
+    body
+    ENDWHILE)
+    | (FOR condition DO
+    body
+    ENDFOR)
     ;
 
-newline
-    : NEWLINE
+condition
+    : simple_condition (logic_connective simple_condition)*
+    ;
+simple_condition
+    : (OPENPARENTHESIS condition CLOSEPARENTHESIS)
+    | (bool_value | math_expression | order_relation)
+    ;
+logic_connective
+    : AND
+    | OR
+    | BYTEAND
+    | BYTEOR
+    | XOR
     ;
 
-
-
-
-
-NEWLINE
-    : '\r'? '\n'
+order_relation
+    : (param_name | expression) binary_relation (param_name | expression)
+    ;
+binary_relation
+    : EQ
+    | NEQ
+    | GT
+    | LE
+    | GEQ
+    | LEQ
     ;
 
+NUMBER
+    : [1-9][0-9]*
+    | [0]
+    ;
 STRING
-    : [A-Za-z][A-Za-z0-9]*
+    : [A-Za-z][A-Za-z0-9_]*
+    ;
+CUSTOM_STRING
+    : ~[$]
     ;
 
 INPUT
-    : 'Input'
+    : '\u0412\u0425\u041E\u0414:'
     ;
 OUTPUT
-    : 'Output'
+    : '\u0412\u042B\u0425\u041E\u0414:'
+    ;
+
+IF
+    : 'if'
+    ;
+THEN
+    : 'then'
+    ;
+ELSEIF
+    : 'elseif'
+    ;
+ENDIF
+    : 'end if'
+    ;
+
+WHILE
+    : 'while'
+    ;
+ENDWHILE
+    : 'end while'
+    ;
+FOR
+    : 'for'
+    ;
+ENDFOR
+    : 'end for'
+    ;
+DO
+    : 'do'
+    ;
+
+NIL
+    : 'nil'
+    ;
+FALSE
+    : 'False'
+    ;
+TRUE
+    : 'True'
     ;
 
 RETURN
@@ -145,4 +232,61 @@ SEMICOLON
 
 ASSIGNMENT
     : '<-'
+    ;
+
+OPENPARENTHESIS
+    : '('
+    ;
+CLOSEPARENTHESIS
+    : ')'
+    ;
+
+AND
+    : 'and'
+    ;
+OR
+    : 'or'
+    ;
+BYTEAND
+    : '&'
+    ;
+BYTEOR
+    : '|'
+    ;
+XOR
+    : 'xor'
+    ;
+
+EQ
+    : '='
+    ;
+NEQ
+    : '!='
+    ;
+GT
+    : '>'
+    ;
+LE
+    : '<'
+    ;
+GEQ
+    : '>='
+    ;
+LEQ
+    : '<='
+    ;
+
+POINTER
+    : '\\pointer'
+    ;
+
+OPENCOMMENT
+    : '<\\cb>'
+    ;
+CLOSECOMMENT
+    : '<\\ce>'
+    ;
+
+WS
+    : [ \t\r\n]+ -> skip
     ;

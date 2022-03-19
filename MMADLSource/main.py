@@ -4,6 +4,10 @@ import codecs
 from MMADLPreParser import MMADLPreParser
 from antlr4 import *
 
+from ANTLR.MMADLLexer import MMADLLexer
+from ANTLR.MMADLParser import MMADLParser
+from ANTLR.MMADLVisitor import MMADLVisitor
+
 
 def parse_argv() -> argparse.Namespace:
     args_parser = argparse.ArgumentParser()
@@ -28,6 +32,16 @@ def main(parser_args: argparse.Namespace):
 
     with codecs.open('temp.txt', 'w', 'utf_8_sig') as f:
         f.write(temp_code)
+
+    lexer = MMADLLexer(FileStream('temp.txt', encoding='utf_8'))
+    tokens = CommonTokenStream(lexer)
+    print(tokens.tokens)
+
+    parser = MMADLParser(tokens)
+    tree = parser.mmadl()
+
+    visitor = MMADLVisitor()
+    visitor.visit(tree)
 
 
 if __name__ == '__main__':

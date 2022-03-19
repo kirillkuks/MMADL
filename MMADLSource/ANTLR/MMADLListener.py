@@ -8,12 +8,12 @@ else:
 # This class defines a complete listener for a parse tree produced by MMADLParser.
 class MMADLListener(ParseTreeListener):
 
-    # Enter a parse tree produced by MMADLParser#programm.
-    def enterProgramm(self, ctx:MMADLParser.ProgrammContext):
+    # Enter a parse tree produced by MMADLParser#mmadl.
+    def enterMmadl(self, ctx:MMADLParser.MmadlContext):
         pass
 
-    # Exit a parse tree produced by MMADLParser#programm.
-    def exitProgramm(self, ctx:MMADLParser.ProgrammContext):
+    # Exit a parse tree produced by MMADLParser#mmadl.
+    def exitMmadl(self, ctx:MMADLParser.MmadlContext):
         pass
 
 
@@ -206,6 +206,24 @@ class MMADLListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MMADLParser#known_lexem.
+    def enterKnown_lexem(self, ctx:MMADLParser.Known_lexemContext):
+        pass
+
+    # Exit a parse tree produced by MMADLParser#known_lexem.
+    def exitKnown_lexem(self, ctx:MMADLParser.Known_lexemContext):
+        pass
+
+
+    # Enter a parse tree produced by MMADLParser#bool_value.
+    def enterBool_value(self, ctx:MMADLParser.Bool_valueContext):
+        pass
+
+    # Exit a parse tree produced by MMADLParser#bool_value.
+    def exitBool_value(self, ctx:MMADLParser.Bool_valueContext):
+        pass
+
+
     # Enter a parse tree produced by MMADLParser#composite_operator.
     def enterComposite_operator(self, ctx:MMADLParser.Composite_operatorContext):
         pass
@@ -215,12 +233,66 @@ class MMADLListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by MMADLParser#newline.
-    def enterNewline(self, ctx:MMADLParser.NewlineContext):
+    # Enter a parse tree produced by MMADLParser#if_operator.
+    def enterIf_operator(self, ctx:MMADLParser.If_operatorContext):
         pass
 
-    # Exit a parse tree produced by MMADLParser#newline.
-    def exitNewline(self, ctx:MMADLParser.NewlineContext):
+    # Exit a parse tree produced by MMADLParser#if_operator.
+    def exitIf_operator(self, ctx:MMADLParser.If_operatorContext):
+        pass
+
+
+    # Enter a parse tree produced by MMADLParser#loop_operator.
+    def enterLoop_operator(self, ctx:MMADLParser.Loop_operatorContext):
+        pass
+
+    # Exit a parse tree produced by MMADLParser#loop_operator.
+    def exitLoop_operator(self, ctx:MMADLParser.Loop_operatorContext):
+        pass
+
+
+    # Enter a parse tree produced by MMADLParser#condition.
+    def enterCondition(self, ctx:MMADLParser.ConditionContext):
+        pass
+
+    # Exit a parse tree produced by MMADLParser#condition.
+    def exitCondition(self, ctx:MMADLParser.ConditionContext):
+        pass
+
+
+    # Enter a parse tree produced by MMADLParser#simple_condition.
+    def enterSimple_condition(self, ctx:MMADLParser.Simple_conditionContext):
+        pass
+
+    # Exit a parse tree produced by MMADLParser#simple_condition.
+    def exitSimple_condition(self, ctx:MMADLParser.Simple_conditionContext):
+        pass
+
+
+    # Enter a parse tree produced by MMADLParser#logic_connective.
+    def enterLogic_connective(self, ctx:MMADLParser.Logic_connectiveContext):
+        pass
+
+    # Exit a parse tree produced by MMADLParser#logic_connective.
+    def exitLogic_connective(self, ctx:MMADLParser.Logic_connectiveContext):
+        pass
+
+
+    # Enter a parse tree produced by MMADLParser#order_relation.
+    def enterOrder_relation(self, ctx:MMADLParser.Order_relationContext):
+        pass
+
+    # Exit a parse tree produced by MMADLParser#order_relation.
+    def exitOrder_relation(self, ctx:MMADLParser.Order_relationContext):
+        pass
+
+
+    # Enter a parse tree produced by MMADLParser#binary_relation.
+    def enterBinary_relation(self, ctx:MMADLParser.Binary_relationContext):
+        pass
+
+    # Exit a parse tree produced by MMADLParser#binary_relation.
+    def exitBinary_relation(self, ctx:MMADLParser.Binary_relationContext):
         pass
 
 

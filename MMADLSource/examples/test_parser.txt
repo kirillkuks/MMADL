@@ -1,0 +1,5 @@
+a <- 123546
+b <- $ qwerty $
+if True or ($ qqq $ and a < c) then
+    c <- 42
+end if
