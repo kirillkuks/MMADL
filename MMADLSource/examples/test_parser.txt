@@ -19,6 +19,6 @@
 	pb <- pb.n 
 		end if
 	end while 
-	<\cb> цуйцуйцуцй <\ce>
+	<\cb> Простотекст <\ce>
 	
 	return pa = nil  

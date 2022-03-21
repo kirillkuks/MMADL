@@ -36,8 +36,8 @@ def main(parser_args: argparse.Namespace):
     translator = MMADLTranslator('examples\\test_parser.txt')
     translator.translate()
 
-    retranslator = MMADLRetranslator('examples\\test_parser.txt')
-    # retranslator = MMADLRetranslator('temp.txt')
+    # retranslator = MMADLRetranslator('examples\\test_parser.txt')
+    retranslator = MMADLRetranslator('temp.txt')
     code = retranslator.translate()
 
     with codecs.open('output.txt', 'w', 'utf_8') as f:
