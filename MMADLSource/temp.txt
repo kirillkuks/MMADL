@@ -1,14 +1,14 @@
-﻿
+
 	Вход: a: \pointer elem_t, b: \pointer elem_t
 	Выход: bool
 	
 	pa <- a; pb <- b 
 	
-	while pa != nil & pb != nil
+	while pa != nil & pb != nil do
 		if 
 	pa.i < pb.i  then
 			
-	return false 
+	return False 
 		elseif 
 	pa.i > pb.i  then
 			
@@ -19,6 +19,6 @@
 	pb <- pb.n 
 		end if
 	end while 
-	<\cb> Просто текст <\ce>
+	<\cb> Some text <\ce>
 	
 	return pa = nil  

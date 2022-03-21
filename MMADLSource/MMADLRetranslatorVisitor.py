@@ -1,13 +1,23 @@
 # Generated from MMADL.g4 by ANTLR 4.9
+from lib2to3.pgen2.token import COMMA
 from antlr4 import *
-if __name__ is not None and "." in __name__:
-    from .MMADLParser import MMADLParser
-else:
-    from MMADLParser import MMADLParser
+
+from ANTLR.MMADLParser import MMADLParser
+from MMADLTranslatorVisitor import MMADLTranslatorVisitor
 
 # This class defines a complete generic visitor for a parse tree produced by MMADLParser.
 
-class MMADLVisitor(ParseTreeVisitor):
+class MMADLRetranslatorVisitor(MMADLTranslatorVisitor):
+    def __init__(self) -> None:
+        super().__init__()
+
+    def addToken(self, token: TerminalNode) -> None:
+        if token is not None:
+            self.code += token.__str__()
+            self.code += ' '
+
+    def addNewline(self) -> None:
+        self.code += '\n'
 
     # Visit a parse tree produced by MMADLParser#mmadl.
     def visitMmadl(self, ctx:MMADLParser.MmadlContext):
@@ -21,31 +31,52 @@ class MMADLVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by MMADLParser#require.
     def visitRequire(self, ctx:MMADLParser.RequireContext):
+        self.addToken(ctx.INPUT())
+
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by MMADLParser#input_params.
     def visitInput_params(self, ctx:MMADLParser.Input_paramsContext):
-        return self.visitChildren(ctx)
+        for i in range(len(ctx.param_name())):
+            self.visit(ctx.param_name(i))
+            self.addToken(ctx.COLON(i))
+            self.visit(ctx.param_type(i))
+            self.addToken(ctx.COMMA(i))
+        
+        self.addNewline()
+        # return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by MMADLParser#ensure.
     def visitEnsure(self, ctx:MMADLParser.EnsureContext):
+        self.addToken(ctx.OUTPUT())
+
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by MMADLParser#output_params.
     def visitOutput_params(self, ctx:MMADLParser.Output_paramsContext):
-        return self.visitChildren(ctx)
+        for i in range(len(ctx.param_type())):
+            self.visit(ctx.param_type(i))
+            self.addToken(ctx.COMMA(i))
+
+        self.addNewline()
+        # return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by MMADLParser#param_name.
     def visitParam_name(self, ctx:MMADLParser.Param_nameContext):
+        self.addToken(ctx.STRING())
+
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by MMADLParser#param_type.
     def visitParam_type(self, ctx:MMADLParser.Param_typeContext):
+        self.addToken(ctx.POINTER())
+        self.addToken(ctx.STRING())
+
         return self.visitChildren(ctx)
 
 
@@ -61,7 +92,12 @@ class MMADLVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by MMADLParser#operators_list.
     def visitOperators_list(self, ctx:MMADLParser.Operators_listContext):
-        return self.visitChildren(ctx)
+        for i in range(len(ctx.operator())):
+            self.visit(ctx.operator(i))
+            self.addToken(ctx.SEMICOLON(i))
+
+        self.addNewline()
+        # return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by MMADLParser#operator.
@@ -76,7 +112,17 @@ class MMADLVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by MMADLParser#assignment_operator.
     def visitAssignment_operator(self, ctx:MMADLParser.Assignment_operatorContext):
-        return self.visitChildren(ctx)
+        self.visit(ctx.param_name(0))
+        if ctx.param_type() is not None:
+            self.visit(ctx.param_type())
+        self.addToken(ctx.ASSIGNMENT())
+
+        if ctx.param_name(1) is not None:
+            self.visit(ctx.param_name(1))
+        if ctx.expression() is not None:
+            self.visit(ctx.expression())
+
+        # return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by MMADLParser#control_operator.
@@ -96,10 +142,16 @@ class MMADLVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by MMADLParser#exit_operator.
     def visitExit_operator(self, ctx:MMADLParser.Exit_operatorContext):
-        return self.visitChildren(ctx)
+        self.addToken(ctx.getChild(0).getText())
+
+        for i in range(len(ctx.exit_value())):
+            self.visit(ctx.exit_value(i))
+            self.addToken(ctx.COMMA(i))
+
+        self.addNewline()
 
 
-    # Visit a parse tree produced by MMADLParser#exit_value.
+    # return self.visitChildren(ctx)
     def visitExit_value(self, ctx:MMADLParser.Exit_valueContext):
         return self.visitChildren(ctx)
 
@@ -126,6 +178,7 @@ class MMADLVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by MMADLParser#known_lexem.
     def visitKnown_lexem(self, ctx:MMADLParser.Known_lexemContext):
+        self.addToken(ctx.getText())
         return self.visitChildren(ctx)
 
 
@@ -141,7 +194,29 @@ class MMADLVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by MMADLParser#if_operator.
     def visitIf_operator(self, ctx:MMADLParser.If_operatorContext):
-        return self.visitChildren(ctx)
+        self.addToken(ctx.IF())
+        self.visit(ctx.condition(0))
+        self.addToken(ctx.THEN(0))
+        self.addNewline()
+
+        self.visit(ctx.body(0))
+
+        for i in range(len(ctx.ELSEIF())):
+            self.addToken(ctx.ELSEIF(i))
+            self.visit(ctx.condition(i + 1))
+            self.addToken(ctx.THEN(i + 1))
+            self.addNewline()
+            self.visit(ctx.body(i + 1))
+
+        if ctx.ELSE() is not None:
+            self.addToken(ctx.ELSE())
+            self.addNewline()
+            self.visit(ctx.body()[-1])
+
+        self.addToken(ctx.ENDIF())
+        self.addNewline()
+
+        # return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by MMADLParser#loop_operator.
@@ -156,7 +231,15 @@ class MMADLVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by MMADLParser#while_operator.
     def visitWhile_operator(self, ctx:MMADLParser.While_operatorContext):
-        return self.visitChildren(ctx)
+        self.addToken(ctx.WHILE())
+        self.visit(ctx.condition())
+        self.addToken(ctx.DO())
+        self.addNewline()
+        self.visit(ctx.body())
+        self.addToken(ctx.ENDWHILE())
+        self.addNewline()
+
+        # return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by MMADLParser#condition.
@@ -166,6 +249,13 @@ class MMADLVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by MMADLParser#simple_condition.
     def visitSimple_condition(self, ctx:MMADLParser.Simple_conditionContext):
+        if ctx.OPENPARENTHESIS() is not None:
+            self.addToken(ctx.OPENPARENTHESIS())
+            self.visit(ctx.condition())
+            self.addToken(ctx.CLOSEPARENTHESIS())
+
+            return
+
         return self.visitChildren(ctx)
 
 
@@ -176,7 +266,13 @@ class MMADLVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by MMADLParser#order_relation.
     def visitOrder_relation(self, ctx:MMADLParser.Order_relationContext):
-        return self.visitChildren(ctx)
+        self.visit(ctx.getChild(0))
+
+        self.addToken(ctx.binary_relation().getText())
+
+        self.visit(ctx.getChild(2))
+
+        # return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by MMADLParser#binary_relation.

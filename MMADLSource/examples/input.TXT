@@ -3,14 +3,14 @@
 	Выход: bool
 	<Инициализация>
 	<Основной цикл>
-	<\cb> Просто текст <\ce>
+	<\cb> Some text <\ce>
 	<Проверка: A подмножество B> <\end>
 
 <Инициализация> := <\begin>
 	pa <- a; pb <- b <\end>
 
 <Основной цикл> := <\begin>
-	while pa != nil & pb != nil
+	while pa != nil & pb != nil do
 		if <Случай 1> then
 			<Элемент A отсутствует в B>
 		elseif <Случай 2> then
@@ -27,7 +27,7 @@
 	pa.i < pb.i <\end>
 
 <Элемент A отсутствует в B> := <\begin>
-	return false <\end>
+	return False <\end>
 
 <Случай 2> := <\begin>
 	pa.i > pb.i <\end>

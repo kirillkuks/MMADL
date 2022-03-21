@@ -1,5 +1,24 @@
-a <- 123546
-b <- $ qwerty $
-if True or ($ qqq $ and a < c) then
-    c <- 42
-end if
+
+	Вход: a: \pointer elem_t, b: \pointer elem_t
+	Выход: bool
+	
+	pa <- a; pb <- b 
+	
+	while pa != nil & pb != nil do
+		if 
+	pa.i < pb.i  then
+			
+	return False 
+		elseif 
+	pa.i > pb.i  then
+			
+	pb <- pb.n 
+		else
+			
+	pa <- pa.n
+	pb <- pb.n 
+		end if
+	end while 
+	<\cb> цуйцуйцуцй <\ce>
+	
+	return pa = nil  

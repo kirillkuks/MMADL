@@ -1,7 +1,7 @@
 grammar MMADL;
 
 mmadl
-    : (header)? body
+    : header? body
     ;
 
 header
@@ -12,14 +12,14 @@ require
     : INPUT
     ;
 input_params
-    : (param_name COLON param_type COMMA?)*
+    : (param_name COLON param_type)? (COMMA param_name COLON param_type)*
     ;
 
 ensure
     : OUTPUT
     ;
 output_params
-    : (param_type COMMA?)*
+    : param_type? (COMMA param_type)*
     ;
 
 param_name
@@ -54,7 +54,7 @@ simple_operator
     | expression
     ;
 assignment_operator
-    : param_name param_type? ASSIGNMENT expression
+    : param_name param_type? ASSIGNMENT (param_name | expression)
     ;
 control_operator
     : exit_operator
@@ -65,12 +65,16 @@ var_definition_operator
     ;
 expression
     : math_expression
-    | function_call
     | known_lexem
+    | function_call
     ;
 
 exit_operator
-    : (RETURN | YIELD) (expression COMMA?)*
+    : (RETURN | YIELD) (exit_value COMMA?)*
+    ;
+exit_value
+    : expression
+    | condition
     ;
 loop_control_operator
     : CONTINUE
@@ -82,7 +86,7 @@ math_expression
     | NUMBER
     ;
 function_call
-    : STRING variables_list
+    : STRING OPENPARENTHESIS variables_list CLOSEPARENTHESIS
     ;
 
 variables_list
@@ -107,15 +111,23 @@ if_operator
     body
     (ELSEIF condition THEN
     body)*
+    (ELSE body)?
     ENDIF
     ;
 loop_operator
-    : (WHILE condition DO
+    : for_operator
+    | while_operator
+    ;
+
+for_operator 
+    : FOR condition DO
     body
-    ENDWHILE)
-    | (FOR condition DO
+    ENDFOR
+    ;
+while_operator
+    : WHILE condition DO
     body
-    ENDFOR)
+    ENDWHILE
     ;
 
 condition
@@ -145,22 +157,11 @@ binary_relation
     | LEQ
     ;
 
-NUMBER
-    : [1-9][0-9]*
-    | [0]
-    ;
-STRING
-    : [A-Za-z][A-Za-z0-9_]*
-    ;
-CUSTOM_STRING
-    : ~[$]
-    ;
-
 INPUT
-    : '\u0412\u0425\u041E\u0414:'
+    : '\u0412\u0445\u043E\u0434:'
     ;
 OUTPUT
-    : '\u0412\u042B\u0425\u041E\u0414:'
+    : '\u0412\u044B\u0445\u043E\u0434:'
     ;
 
 IF
@@ -172,6 +173,9 @@ THEN
 ELSEIF
     : 'elseif'
     ;
+ELSE
+    : 'else'
+    ; 
 ENDIF
     : 'end if'
     ;
@@ -289,4 +293,15 @@ CLOSECOMMENT
 
 WS
     : [ \t\r\n]+ -> skip
+    ;
+
+NUMBER
+    : [1-9][0-9]*
+    | [0]
+    ;
+STRING
+    : [A-Za-z][A-Za-z0-9_.]*
+    ;
+CUSTOM_STRING
+    : [a-zA-Z0-9\u0410-\u042F\u0430-\u044F]+
     ;

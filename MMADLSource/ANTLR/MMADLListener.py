@@ -170,6 +170,15 @@ class MMADLListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MMADLParser#exit_value.
+    def enterExit_value(self, ctx:MMADLParser.Exit_valueContext):
+        pass
+
+    # Exit a parse tree produced by MMADLParser#exit_value.
+    def exitExit_value(self, ctx:MMADLParser.Exit_valueContext):
+        pass
+
+
     # Enter a parse tree produced by MMADLParser#loop_control_operator.
     def enterLoop_control_operator(self, ctx:MMADLParser.Loop_control_operatorContext):
         pass
@@ -248,6 +257,24 @@ class MMADLListener(ParseTreeListener):
 
     # Exit a parse tree produced by MMADLParser#loop_operator.
     def exitLoop_operator(self, ctx:MMADLParser.Loop_operatorContext):
+        pass
+
+
+    # Enter a parse tree produced by MMADLParser#for_operator.
+    def enterFor_operator(self, ctx:MMADLParser.For_operatorContext):
+        pass
+
+    # Exit a parse tree produced by MMADLParser#for_operator.
+    def exitFor_operator(self, ctx:MMADLParser.For_operatorContext):
+        pass
+
+
+    # Enter a parse tree produced by MMADLParser#while_operator.
+    def enterWhile_operator(self, ctx:MMADLParser.While_operatorContext):
+        pass
+
+    # Exit a parse tree produced by MMADLParser#while_operator.
+    def exitWhile_operator(self, ctx:MMADLParser.While_operatorContext):
         pass
 
 

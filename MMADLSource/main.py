@@ -1,12 +1,11 @@
 import argparse
 import codecs
 
-from MMADLPreParser import MMADLPreParser
 from antlr4 import *
 
-from ANTLR.MMADLLexer import MMADLLexer
-from ANTLR.MMADLParser import MMADLParser
-from ANTLR.MMADLVisitor import MMADLVisitor
+from MMADLPreParser import MMADLPreParser
+from MMADLRetranslator import MMADLRetranslator
+from MMADLTranslator import MMADLTranslator
 
 
 def parse_argv() -> argparse.Namespace:
@@ -30,18 +29,19 @@ def main(parser_args: argparse.Namespace):
 
     temp_code = parser.MMADL_to_temp()
 
-    with codecs.open('temp.txt', 'w', 'utf_8_sig') as f:
+    with codecs.open('temp.txt', 'w', 'utf_8') as f:
         f.write(temp_code)
 
-    lexer = MMADLLexer(FileStream('temp.txt', encoding='utf_8'))
-    tokens = CommonTokenStream(lexer)
-    print(tokens.tokens)
+    translator = MMADLTranslator('examples\\test_parser.txt')
+    translator = MMADLTranslator('examples\\test_parser.txt')
+    translator.translate()
 
-    parser = MMADLParser(tokens)
-    tree = parser.mmadl()
+    retranslator = MMADLRetranslator('examples\\test_parser.txt')
+    # retranslator = MMADLRetranslator('temp.txt')
+    code = retranslator.translate()
 
-    visitor = MMADLVisitor()
-    visitor.visit(tree)
+    with codecs.open('output.txt', 'w', 'utf_8') as f:
+        f.write(code)
 
 
 if __name__ == '__main__':
