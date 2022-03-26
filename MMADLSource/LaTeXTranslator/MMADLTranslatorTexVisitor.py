@@ -1,55 +1,95 @@
-# Generated from MMADL.g4 by ANTLR 4.9
 from antlr4 import *
+
+import sys
+sys.path.append('..')
 
 from ANTLR.MMADLParser import MMADLParser
 from MMADLTranslatorVisitor import MMADLTranslatorVisitor
 
-# This class defines a complete generic visitor for a parse tree produced by MMADLParser.
+from LaTeXTranslator.TexTable import TexTable
 
-class MMADLRetranslatorVisitor(MMADLTranslatorVisitor):
+
+class TexCodePrinter:
+    def __init__(self, code_color: str = 'black', key_word_color: str = 'blue', comment_color: str = 'green') -> None:
+        self.code_color = code_color
+        self.key_word_color = key_word_color
+        self.comment_color = comment_color
+
+    def print(self, token: TerminalNode) -> str:
+        return token.__str__() + ' \ ' if token is not None else ''
+
+    def printCodeText(self, token: TerminalNode) -> str:
+        if token is None:
+            return ''
+        return '\\textcolor{' + self.code_color + '}{' + self._to_tex_string(token.__str__()) + '} \ '
+
+    def printKeyWord(self, token: TerminalNode) -> str:
+        if token is None:
+            return ''
+        return '\\textbf{\\textcolor{' + self.key_word_color + '}{' + self._to_tex_string(token.__str__()) + '}} \ '
+
+    def printComment(self, token: TerminalNode) -> str:
+        if token is None:
+            return ''
+        return '\\textsl{\\textcolor{' + self.comment_color + '}{' + self._to_tex_string(token.__str__()) + '}} \ '
+
+    def _to_tex_string(self, s: str) -> str:
+        return s.replace('_', '\\_')
+
+
+class MMADLTranslatorTexVisitor(MMADLTranslatorVisitor):
     def __init__(self) -> None:
         super().__init__()
 
-    def addToken(self, token: TerminalNode) -> None:
+        self.code_level = 0
+        self.tex_level = 1
+
+        self.code_printer = TexCodePrinter()
+
+        self.table = TexTable()
+
+    def addToken(self, token: str) -> None:
         if token is not None:
             self.code += token.__str__()
             self.code += ' '
 
     def addNewline(self) -> None:
-        self.code += '\n'
+        self.code += '$ \n\\newline\n $ \\null ' + self.code_level * '\\quad '
 
     # Visit a parse tree produced by MMADLParser#mmadl.
     def visitMmadl(self, ctx:MMADLParser.MmadlContext):
-        return self.visitChildren(ctx)
+        head, tail = self.getTexCodeTemplete()
 
+        self.code += head + ' $ '
+        res = self.visitChildren(ctx)
+        self.code += '$ \n' + tail
+        
+        return res
 
     # Visit a parse tree produced by MMADLParser#header.
     def visitHeader(self, ctx:MMADLParser.HeaderContext):
         return self.visitChildren(ctx)
 
-
     # Visit a parse tree produced by MMADLParser#require.
     def visitRequire(self, ctx:MMADLParser.RequireContext):
-        self.addToken(ctx.INPUT())
+        self.addToken(self.code_printer.printKeyWord(ctx.INPUT()))
 
         return self.visitChildren(ctx)
-
 
     # Visit a parse tree produced by MMADLParser#input_params.
     def visitInput_params(self, ctx:MMADLParser.Input_paramsContext):
         for i in range(len(ctx.param_name())):
             self.visit(ctx.param_name(i))
-            self.addToken(ctx.COLON(i))
+            self.addToken(self.code_printer.printCodeText(ctx.COLON(i)))
             self.visit(ctx.param_type(i))
-            self.addToken(ctx.COMMA(i))
+            self.addToken(self.code_printer.printCodeText(ctx.COMMA(i)))
         
         self.addNewline()
-        # return self.visitChildren(ctx)
-
+        return
 
     # Visit a parse tree produced by MMADLParser#ensure.
     def visitEnsure(self, ctx:MMADLParser.EnsureContext):
-        self.addToken(ctx.OUTPUT())
+        self.addToken(self.code_printer.printKeyWord(ctx.OUTPUT()))
 
         return self.visitChildren(ctx)
 
@@ -58,69 +98,68 @@ class MMADLRetranslatorVisitor(MMADLTranslatorVisitor):
     def visitOutput_params(self, ctx:MMADLParser.Output_paramsContext):
         for i in range(len(ctx.param_type())):
             self.visit(ctx.param_type(i))
-            self.addToken(ctx.COMMA(i))
+            self.addToken(self.code_printer.print(ctx.COMMA(i)))
 
         self.addNewline()
-        # return self.visitChildren(ctx)
-
+        return
 
     # Visit a parse tree produced by MMADLParser#param_name.
     def visitParam_name(self, ctx:MMADLParser.Param_nameContext):
-        self.addToken(ctx.STRING())
+        self.addToken(self.code_printer.printCodeText(ctx.STRING()))
 
-        return self.visitChildren(ctx)
-
+        return
+        # return self.visitChildren(ctx)
 
     # Visit a parse tree produced by MMADLParser#param_type.
     def visitParam_type(self, ctx:MMADLParser.Param_typeContext):
         for i in range(len(ctx.POINTER())):
-            self.addToken(ctx.POINTER(i))
+            self.addToken(self.code_printer.print(
+                self.table.getToken(ctx.POINTER(i))
+                )
+            )
 
-        self.addToken(ctx.STRING())
-
-        return self.visitChildren(ctx)
-
+        self.addToken(self.code_printer.printKeyWord(ctx.STRING()))
+        return
+        # return self.visitChildren(ctx)
 
     # Visit a parse tree produced by MMADLParser#body.
     def visitBody(self, ctx:MMADLParser.BodyContext):
         return self.visitChildren(ctx)
 
-
     # Visit a parse tree produced by MMADLParser#comment.
     def visitComment(self, ctx:MMADLParser.CommentContext):
-        self.addToken(ctx.OPENCOMMENT())
-        self.addToken(ctx.CUSTOM_STRING())
-        self.addToken(ctx.CLOSECOMMENT())
-        self.addNewline()
-        return self.visitChildren(ctx)
+        comment = ''
+        comment += self.table.getToken(ctx.OPENCOMMENT())
+        comment += ctx.CUSTOM_STRING().__str__()
+        comment += self.table.getToken(ctx.CLOSECOMMENT())
 
+        self.addToken(self.code_printer.printComment(comment))
+        return
 
     # Visit a parse tree produced by MMADLParser#operators_list.
     def visitOperators_list(self, ctx:MMADLParser.Operators_listContext):
         for i in range(len(ctx.operator())):
             self.visit(ctx.operator(i))
-            self.addToken(ctx.SEMICOLON(i))
+            self.addToken(self.code_printer.printCodeText(ctx.SEMICOLON(i)))
 
         self.addNewline()
-        # return self.visitChildren(ctx)
-
 
     # Visit a parse tree produced by MMADLParser#operator.
     def visitOperator(self, ctx:MMADLParser.OperatorContext):
         return self.visitChildren(ctx)
 
-
     # Visit a parse tree produced by MMADLParser#simple_operator.
     def visitSimple_operator(self, ctx:MMADLParser.Simple_operatorContext):
         return self.visitChildren(ctx)
-
 
     # Visit a parse tree produced by MMADLParser#assignment_operator.
     def visitAssignment_operator(self, ctx:MMADLParser.Assignment_operatorContext):
         self.visit(ctx.param_name(0))
         if ctx.param_type() is not None:
             self.visit(ctx.param_type())
-        self.addToken(ctx.ASSIGNMENT())
+        self.addToken(self.code_printer.printCodeText( 
+            self.table.getToken(ctx.ASSIGNMENT()))
+        )
 
         if ctx.param_name(1) is not None:
             self.visit(ctx.param_name(1))
@@ -299,6 +338,34 @@ class MMADLRetranslatorVisitor(MMADLTranslatorVisitor):
     def visitBinary_relation(self, ctx:MMADLParser.Binary_relationContext):
         return self.visitChildren(ctx)
 
+
+    def getTexCodeTemplete(self):
+        head = '\\documentclass[a4paper,12pt]{article}\n'\
+                '\n'\
+                '\\usepackage[hidelinks]{hyperref}\n'\
+                '\\usepackage{amsmath}\n'\
+                '\\usepackage{mathtools}\n'\
+                '\\usepackage{shorttoc}\n'\
+                '\\usepackage{cmap}\n'\
+                '\\usepackage[T2A]{fontenc}\n'\
+                '\\usepackage[utf8]{inputenc}\n'\
+                '\\usepackage[english, russian]{babel}\n'\
+                '\\usepackage{xcolor}\n'\
+                '\\usepackage{graphicx}\n'\
+                '\\usepackage{float}\n'\
+                '\n'\
+                '\\definecolor{linkcolor}{HTML}{000000}\n'\
+                '\\definecolor{urlcolor}{HTML}{0085FF}\n'\
+                '\\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}\n'\
+                '\n'\
+                '\\DeclarePairedDelimiter{\\floor}{\lfloor}{\\rfloor}\n'\
+                '\n'\
+                '\n'\
+                '\\begin{document}\n'
+
+        tail = '\\end{document}\n'
+
+        return head, tail
 
 
 del MMADLParser

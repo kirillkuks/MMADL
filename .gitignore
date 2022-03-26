@@ -3,3 +3,7 @@
 /MMADLSource/.antlr
 
 /MMADLSource/ANTLR/__pycache__
+
+/MMADLSource/LaTeXTranslator/__pycache__
+
+/LatexTester

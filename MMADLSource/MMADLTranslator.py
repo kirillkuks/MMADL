@@ -1,4 +1,3 @@
-from select import select
 from antlr4 import *
 
 from ANTLR.MMADLLexer import MMADLLexer

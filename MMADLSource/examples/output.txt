@@ -1,0 +1,60 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{shorttoc}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{float}
+
+\definecolor{linkcolor}{HTML}{000000}
+\definecolor{urlcolor}{HTML}{0085FF}
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+
+\begin{document}
+ $ \textbf{\textcolor{blue}{Вход:}} \  \textcolor{black}{a} \  \textcolor{black}{:} \  \uparrow \  \textbf{\textcolor{blue}{elem\_t}} \  \textcolor{black}{,} \  \textcolor{black}{b} \  \textcolor{black}{:} \  \uparrow \  \textbf{\textcolor{blue}{elem\_t}} \   $ 
+\newline
+ $ \null \textbf{\textcolor{blue}{Выход:}} \  \textbf{\textcolor{blue}{bool}} \   $ 
+\newline
+ $ \null \textcolor{black}{pa} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{a} \  \textcolor{black}{;} \  \textcolor{black}{pb} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{b} \   $ 
+\newline
+ $ \null while \textcolor{black}{pa} \  != nil & \textcolor{black}{pb} \  != nil do $ 
+\newline
+ $ \null if \textcolor{black}{pa.i} \  < \textcolor{black}{pb.i} \  then $ 
+\newline
+ $ \null return False $ 
+\newline
+ $ \null  $ 
+\newline
+ $ \null elseif \textcolor{black}{pa.i} \  > \textcolor{black}{pb.i} \  then $ 
+\newline
+ $ \null \textcolor{black}{pb} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{pb.n} \   $ 
+\newline
+ $ \null else $ 
+\newline
+ $ \null \textcolor{black}{pa} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{pa.n} \   $ 
+\newline
+ $ \null \textcolor{black}{pb} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{pb.n} \   $ 
+\newline
+ $ \null end if $ 
+\newline
+ $ \null  $ 
+\newline
+ $ \null end while $ 
+\newline
+ $ \null  $ 
+\newline
+ $ \null \textsl{\textcolor{green}{*/Простотекст/*}} \  return \textcolor{black}{pa} \  = nil $ 
+\newline
+ $ \null  $ 
+\newline
+ $ \null $ 
+\end{document}

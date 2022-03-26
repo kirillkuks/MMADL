@@ -7,6 +7,8 @@ from MMADLPreParser import MMADLPreParser
 from MMADLRetranslator import MMADLRetranslator
 from MMADLTranslator import MMADLTranslator
 
+from LaTeXTranslator.MMADLTranslatorTex import MMADLTranslatorTex
+
 
 def parse_argv() -> argparse.Namespace:
     args_parser = argparse.ArgumentParser()
@@ -29,18 +31,15 @@ def main(parser_args: argparse.Namespace):
 
     temp_code = parser.MMADL_to_temp()
 
-    with codecs.open('temp.txt', 'w', 'utf_8') as f:
+    with codecs.open('temp.mmadlt', 'w', 'utf_8') as f:
         f.write(temp_code)
 
-    translator = MMADLTranslator('examples\\test_parser.txt')
-    translator = MMADLTranslator('examples\\test_parser.txt')
-    translator.translate()
-
-    # retranslator = MMADLRetranslator('examples\\test_parser.txt')
-    retranslator = MMADLRetranslator('temp.txt')
+    retranslator = MMADLTranslatorTex('temp.mmadlt')
+    # retranslator = MMADLRetranslator('temp.mmadlt')
     code = retranslator.translate()
+    print(code)
 
-    with codecs.open('output.txt', 'w', 'utf_8') as f:
+    with codecs.open('examples\\output.txt', 'w', 'utf_8') as f:
         f.write(code)
 
 

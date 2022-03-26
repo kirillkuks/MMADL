@@ -26,7 +26,7 @@ param_name
     : STRING
     ;
 param_type
-    : POINTER? STRING
+    : POINTER* STRING
     ;
 
 body
