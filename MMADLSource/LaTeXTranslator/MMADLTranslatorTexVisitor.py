@@ -118,9 +118,22 @@ class MMADLTranslatorTexVisitor(MMADLTranslatorVisitor):
                 )
             )
 
-        self.addToken(self.code_printer.printKeyWord(ctx.STRING()))
+        if ctx.STRING() is not None:
+            self.addToken(self.code_printer.printKeyWord(ctx.STRING()))
+        else:
+            self.visit(ctx.composite_param_type())
+
         return
         # return self.visitChildren(ctx)
+
+    def visitComposite_param_type(self, ctx:MMADLParser.Param_typeContext):
+        self.addToken(self.code_printer.printKeyWord(ctx.OPENBRACKET()))
+        self.visit(ctx.param_type(0))
+        for i in range(len(ctx.COMMA())):
+            self.addToken(self.code_printer.printKeyWord(ctx.COMMA(i)))
+            self.visit(ctx.param_type(i + 1))
+        self.addToken(self.code_printer.printKeyWord(ctx.CLOSEBRACKET()))
+        return
 
     # Visit a parse tree produced by MMADLParser#body.
     def visitBody(self, ctx:MMADLParser.BodyContext):
@@ -207,6 +220,12 @@ class MMADLTranslatorTexVisitor(MMADLTranslatorVisitor):
 
     # Visit a parse tree produced by MMADLParser#math_expression.
     def visitMath_expression(self, ctx:MMADLParser.Math_expressionContext):
+        self.addToken(' ')
+        self.addToken(self.code_printer.printCodeText(ctx.STRING(0)))
+        for i in range(1, len(ctx.STRING())):
+            self.addToken(self.code_printer.printCodeText(ctx.MATH_BINARY_OPERAIONS(i - 1)))
+            self.addToken(self.code_printer.printCodeText(ctx.STRING(i)))
+        self.addToken(' ')
         return self.visitChildren(ctx)
 
 

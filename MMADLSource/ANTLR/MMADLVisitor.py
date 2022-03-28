@@ -49,6 +49,11 @@ class MMADLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MMADLParser#composite_param_type.
+    def visitComposite_param_type(self, ctx:MMADLParser.Composite_param_typeContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by MMADLParser#body.
     def visitBody(self, ctx:MMADLParser.BodyContext):
         return self.visitChildren(ctx)

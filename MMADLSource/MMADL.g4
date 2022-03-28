@@ -26,7 +26,12 @@ param_name
     : STRING
     ;
 param_type
-    : POINTER* STRING
+    : POINTER* (STRING | composite_param_type)
+    | STRING
+    ;
+
+composite_param_type
+    : OPENBRACKET param_type (COMMA param_type)* CLOSEBRACKET
     ;
 
 body
@@ -82,7 +87,7 @@ loop_control_operator
     ;
 
 math_expression
-    : (MATH_EXPRESSION_SIGN STRING MATH_EXPRESSION_SIGN)
+    : MATH_EXPRESSION_SIGN STRING (MATH_BINARY_OPERAIONS STRING)* MATH_EXPRESSION_SIGN
     | NUMBER
     ;
 function_call
@@ -143,6 +148,7 @@ logic_connective
     | BYTEAND
     | BYTEOR
     | XOR
+    | IN
     ;
 
 order_relation
@@ -245,6 +251,14 @@ CLOSEPARENTHESIS
     : ')'
     ;
 
+OPENBRACKET
+    : LE
+    ;
+
+CLOSEBRACKET
+    : GT
+    ;
+
 AND
     : 'and'
     ;
@@ -280,6 +294,10 @@ LEQ
     : '<='
     ;
 
+IN
+    : '\\in'
+    ;
+
 POINTER
     : '\\pointer'
     ;
@@ -295,12 +313,17 @@ WS
     : [ \t\r\n]+ -> skip
     ;
 
+MATH_BINARY_OPERAIONS
+    : '+' | '-' | '*' | '/'
+    ;
+
 NUMBER
     : [1-9][0-9]*
     | [0]
     ;
 STRING
-    : [A-Za-z][A-Za-z0-9_.]*
+    : [A-Za-z\u0391-\u03C9][A-Za-z0-9_.]*
+    | ('\\Alpha' | '\\alpha' | '\\Beta' | '\\beta' | '\\Gamma' | '\\gamma' | '\\epsilon') (STRING)*
     ;
 CUSTOM_STRING
     : [a-zA-Z0-9\u0410-\u042F\u0430-\u044F]+

@@ -80,6 +80,15 @@ class MMADLListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MMADLParser#composite_param_type.
+    def enterComposite_param_type(self, ctx:MMADLParser.Composite_param_typeContext):
+        pass
+
+    # Exit a parse tree produced by MMADLParser#composite_param_type.
+    def exitComposite_param_type(self, ctx:MMADLParser.Composite_param_typeContext):
+        pass
+
+
     # Enter a parse tree produced by MMADLParser#body.
     def enterBody(self, ctx:MMADLParser.BodyContext):
         pass
