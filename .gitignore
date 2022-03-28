@@ -1,6 +1,7 @@
 /MMADLSource/.venv
 /MMADLSource/__pycache__
 /MMADLSource/.antlr
+/MMADLSource/.idea/
 
 /MMADLSource/ANTLR/__pycache__
 
