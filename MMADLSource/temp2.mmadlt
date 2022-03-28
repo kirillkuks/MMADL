@@ -1,0 +1,12 @@
+
+    Вход: M: \pointer <E, \epsilon>
+    Выход: subsequence_t
+    
+    B <- nil 
+    
+    for e in $E$ do
+        if 
+    $B + e$ in $\epsilon$  then
+            B <- $B + e$
+        end if
+    end for  

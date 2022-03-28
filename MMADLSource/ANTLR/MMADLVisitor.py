@@ -164,6 +164,21 @@ class MMADLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MMADLParser#for_range.
+    def visitFor_range(self, ctx:MMADLParser.For_rangeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MMADLParser#include.
+    def visitInclude(self, ctx:MMADLParser.IncludeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MMADLParser#iteration.
+    def visitIteration(self, ctx:MMADLParser.IterationContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by MMADLParser#condition.
     def visitCondition(self, ctx:MMADLParser.ConditionContext):
         return self.visitChildren(ctx)

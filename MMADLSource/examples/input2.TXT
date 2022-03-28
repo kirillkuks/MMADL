@@ -8,11 +8,11 @@
     B <- nil <\end>
 
 <Основной цикл>:= <\begin>
-    for $e$ \in $E$ do
+    for e in $E$ do
         if <Проверка возможности добавления в базис> then
             B <- $B + e$
         end if
     end for <\end>
 
 <Проверка возможности добавления в базис> := <\begin>
-    $B + e$ \in $\epsilon$ <\end>
+    $B + e$ in $\epsilon$ <\end>

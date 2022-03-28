@@ -20,23 +20,39 @@
 
 
 \begin{document}
- $ \textbf{\textcolor{blue}{Вход:}} \  \textcolor{black}{M} \  \textcolor{black}{:} \  \uparrow \  \textbf{\textcolor{blue}{<}} \  \textbf{\textcolor{blue}{E}} \  \textbf{\textcolor{blue}{,}} \  \textbf{\textcolor{blue}{\epsilon}} \  \textbf{\textcolor{blue}{>}} \   $ 
+ $ \textbf{\textcolor{blue}{Вход:}} \  \textcolor{black}{a} \  \textcolor{black}{:} \  \uparrow \  \textbf{\textcolor{blue}{elem\_t}} \  \textcolor{black}{,} \  \textcolor{black}{b} \  \textcolor{black}{:} \  \uparrow \  \textbf{\textcolor{blue}{elem\_t}} \   $ 
 \newline
- $ \null \textbf{\textcolor{blue}{Выход:}} \  \textbf{\textcolor{blue}{subsequence\_t}} \   $ 
+ $ \null \textbf{\textcolor{blue}{Выход:}} \  \textbf{\textcolor{blue}{bool}} \   $ 
 \newline
- $ \null \textcolor{black}{B} \  \textcolor{black}{\leftarrow} \  nil  $ 
+ $ \null \textcolor{black}{pa} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{a} \  \textcolor{black}{;} \  \textcolor{black}{pb} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{b} \   $ 
 \newline
- $ \null for   \textcolor{black}{e} \    \in   \textcolor{black}{E} \    do $ 
+ $ \null while \textcolor{black}{pa} \  != nil & \textcolor{black}{pb} \  != nil do $ 
 \newline
- $ \null if   \textcolor{black}{B} \  \textcolor{black}{+} \  \textcolor{black}{e} \    \in   \textcolor{black}{\epsilon} \    then $ 
+ $ \null if \textcolor{black}{pa.i} \  < \textcolor{black}{pb.i} \  then $ 
 \newline
- $ \null \textcolor{black}{B} \  \textcolor{black}{\leftarrow} \    \textcolor{black}{B} \  \textcolor{black}{+} \  \textcolor{black}{e} \     $ 
+ $ \null return False $ 
+\newline
+ $ \null  $ 
+\newline
+ $ \null elseif \textcolor{black}{pa.i} \  > \textcolor{black}{pb.i} \  then $ 
+\newline
+ $ \null \textcolor{black}{pb} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{pb.n} \   $ 
+\newline
+ $ \null else $ 
+\newline
+ $ \null \textcolor{black}{pa} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{pa.n} \   $ 
+\newline
+ $ \null \textcolor{black}{pb} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{pb.n} \   $ 
 \newline
  $ \null end if $ 
 \newline
  $ \null  $ 
 \newline
- $ \null end for $ 
+ $ \null end while $ 
+\newline
+ $ \null  $ 
+\newline
+ $ \null \textsl{\textcolor{green}{*/Простотекст/*}} \  return \textcolor{black}{pa} \  = nil $ 
 \newline
  $ \null  $ 
 \newline

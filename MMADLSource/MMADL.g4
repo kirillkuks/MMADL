@@ -31,7 +31,7 @@ param_type
     ;
 
 composite_param_type
-    : OPENBRACKET param_type (COMMA param_type)* CLOSEBRACKET
+    : LE param_type (COMMA param_type)* GT
     ;
 
 body
@@ -277,14 +277,6 @@ CLOSEPARENTHESIS
     : ')'
     ;
 
-OPENBRACKET
-    : LE
-    ;
-
-CLOSEBRACKET
-    : GT
-    ;
-
 AND
     : 'and'
     ;
@@ -318,10 +310,6 @@ GEQ
     ;
 LEQ
     : '<='
-    ;
-
-IN
-    : '\\in'
     ;
 
 POINTER

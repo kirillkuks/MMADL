@@ -1,0 +1,44 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{shorttoc}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{float}
+
+\definecolor{linkcolor}{HTML}{000000}
+\definecolor{urlcolor}{HTML}{0085FF}
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+
+\begin{document}
+ $ \textbf{\textcolor{blue}{Вход:}} \  \textcolor{black}{M} \  \textcolor{black}{:} \  \uparrow \  \textbf{\textcolor{blue}{<}} \  \textbf{\textcolor{blue}{E}} \  \textbf{\textcolor{blue}{,}} \  \textbf{\textcolor{blue}{\epsilon}} \  \textbf{\textcolor{blue}{>}} \   $ 
+\newline
+ $ \null \textbf{\textcolor{blue}{Выход:}} \  \textbf{\textcolor{blue}{subsequence\_t}} \   $ 
+\newline
+ $ \null \textcolor{black}{B} \  \textcolor{black}{\leftarrow} \  nil  $ 
+\newline
+ $ \null for \textcolor{black}{e} \    \textcolor{black}{E} \    do $ 
+\newline
+ $ \null if   \textcolor{black}{B} \  \textcolor{black}{+} \  \textcolor{black}{e} \    in   \textcolor{black}{\epsilon} \    then $ 
+\newline
+ $ \null \textcolor{black}{B} \  \textcolor{black}{\leftarrow} \    \textcolor{black}{B} \  \textcolor{black}{+} \  \textcolor{black}{e} \     $ 
+\newline
+ $ \null end if $ 
+\newline
+ $ \null  $ 
+\newline
+ $ \null end for $ 
+\newline
+ $ \null  $ 
+\newline
+ $ \null $ 
+\end{document}
