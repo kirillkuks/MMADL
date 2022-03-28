@@ -125,7 +125,7 @@ loop_operator
     ;
 
 for_operator 
-    : FOR condition DO
+    : FOR for_range DO
     body
     ENDFOR
     ;
@@ -133,6 +133,18 @@ while_operator
     : WHILE condition DO
     body
     ENDWHILE
+    ;
+
+for_range
+    : include
+    | iteration
+    ;
+
+include
+    : param_name IN math_expression
+    ;
+iteration
+    : param_name FROM math_expression (TO | DOWNTO) math_expression
     ;
 
 condition
@@ -200,6 +212,20 @@ ENDFOR
     ;
 DO
     : 'do'
+    ;
+
+FROM
+    : 'from'
+    ;
+TO
+    : 'to'
+    ;
+DOWNTO
+    : 'downto'
+    ;
+
+IN
+    : 'in'
     ;
 
 NIL
