@@ -169,6 +169,11 @@ class MMADLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MMADLParser#index.
+    def visitIndex(self, ctx:MMADLParser.IndexContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by MMADLParser#include.
     def visitInclude(self, ctx:MMADLParser.IncludeContext):
         return self.visitChildren(ctx)

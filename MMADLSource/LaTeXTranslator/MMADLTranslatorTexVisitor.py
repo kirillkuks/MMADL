@@ -127,17 +127,22 @@ class MMADLTranslatorTexVisitor(MMADLTranslatorVisitor):
         # return self.visitChildren(ctx)
 
     def visitComposite_param_type(self, ctx:MMADLParser.Param_typeContext):
-        self.addToken(self.code_printer.printKeyWord(ctx.OPENBRACKET()))
+        self.addToken(self.code_printer.printKeyWord(ctx.LE()))
         self.visit(ctx.param_type(0))
         for i in range(len(ctx.COMMA())):
             self.addToken(self.code_printer.printKeyWord(ctx.COMMA(i)))
             self.visit(ctx.param_type(i + 1))
-        self.addToken(self.code_printer.printKeyWord(ctx.CLOSEBRACKET()))
+        self.addToken(self.code_printer.printKeyWord(ctx.GT()))
         return
 
     # Visit a parse tree produced by MMADLParser#body.
     def visitBody(self, ctx:MMADLParser.BodyContext):
         return self.visitChildren(ctx)
+
+    def visitIndex(self, ctx:MMADLParser.BodyContext):
+        self.addToken(self.code_printer.printKeyWord(ctx.OPEN_BRACKET()))
+        self.addToken(self.code_printer.printKeyWord(ctx.STRING()))
+        self.addToken(self.code_printer.printKeyWord(ctx.CLOSE_BRACKET()))
 
     # Visit a parse tree produced by MMADLParser#comment.
     def visitComment(self, ctx:MMADLParser.CommentContext):
@@ -221,12 +226,17 @@ class MMADLTranslatorTexVisitor(MMADLTranslatorVisitor):
     # Visit a parse tree produced by MMADLParser#math_expression.
     def visitMath_expression(self, ctx:MMADLParser.Math_expressionContext):
         self.addToken(' ')
-        self.addToken(self.code_printer.printCodeText(ctx.STRING(0)))
-        for i in range(1, len(ctx.STRING())):
-            self.addToken(self.code_printer.printCodeText(ctx.MATH_BINARY_OPERAIONS(i - 1)))
-            self.addToken(self.code_printer.printCodeText(ctx.STRING(i)))
+        if ctx.CUSTOM_STRING() is not None:
+            self.addToken(self.code_printer.printCodeText(ctx.CUSTOM_STRING()))
+        elif ctx.NUMBER() is not None:
+            self.addToken(self.code_printer.printCodeText(ctx.NUMBER()))
+        else:
+            self.visit(ctx.param_name(0))
+            if ctx.MATH_BINARY_OPERAIONS() is not None:
+                for i in range(len(ctx.MATH_BINARY_OPERAIONS())):
+                    self.addToken(self.code_printer.printCodeText(ctx.MATH_BINARY_OPERAIONS(i)))
+                    self.visit(ctx.param_name(i + 1))
         self.addToken(' ')
-        return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by MMADLParser#function_call.

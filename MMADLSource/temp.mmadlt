@@ -1,3 +1,4 @@
+
 	Вход: a: \pointer elem_t, b: \pointer elem_t
 	Выход: bool
 	

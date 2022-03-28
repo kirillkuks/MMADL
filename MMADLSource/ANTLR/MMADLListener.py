@@ -296,6 +296,15 @@ class MMADLListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MMADLParser#index.
+    def enterIndex(self, ctx:MMADLParser.IndexContext):
+        pass
+
+    # Exit a parse tree produced by MMADLParser#index.
+    def exitIndex(self, ctx:MMADLParser.IndexContext):
+        pass
+
+
     # Enter a parse tree produced by MMADLParser#include.
     def enterInclude(self, ctx:MMADLParser.IncludeContext):
         pass

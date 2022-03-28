@@ -31,15 +31,15 @@ def main(parser_args: argparse.Namespace):
 
     temp_code = parser.MMADL_to_temp()
 
-    with codecs.open('temp.mmadlt', 'w', 'utf_8') as f:
+    with codecs.open('temp3.mmadlt', 'w', 'utf_8') as f:
         f.write(temp_code)
 
-    retranslator = MMADLTranslatorTex('temp.mmadlt')
+    retranslator = MMADLTranslatorTex('temp3.mmadlt')
     # retranslator = MMADLRetranslator('temp.mmadlt')
     code = retranslator.translate()
     print(code)
 
-    with codecs.open('examples\\output.txt', 'w', 'utf_8') as f:
+    with codecs.open('examples\\output3.txt', 'w', 'utf_8') as f:
         f.write(code)
 
 

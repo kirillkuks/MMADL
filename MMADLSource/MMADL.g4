@@ -23,7 +23,7 @@ output_params
     ;
 
 param_name
-    : STRING
+    : STRING index*
     ;
 param_type
     : POINTER* (STRING | composite_param_type)
@@ -87,7 +87,8 @@ loop_control_operator
     ;
 
 math_expression
-    : MATH_EXPRESSION_SIGN STRING (MATH_BINARY_OPERAIONS STRING)* MATH_EXPRESSION_SIGN
+    : MATH_EXPRESSION_SIGN param_name (MATH_BINARY_OPERAIONS param_name)* MATH_EXPRESSION_SIGN
+    | CUSTOM_STRING
     | NUMBER
     ;
 function_call
@@ -140,6 +141,10 @@ for_range
     | iteration
     ;
 
+index
+    : OPEN_BRACKET STRING CLOSE_BRACKET
+    ;
+
 include
     : param_name IN math_expression
     ;
@@ -160,7 +165,6 @@ logic_connective
     | BYTEAND
     | BYTEOR
     | XOR
-    | IN
     ;
 
 order_relation
@@ -173,6 +177,7 @@ binary_relation
     | LE
     | GEQ
     | LEQ
+    | IN
     ;
 
 INPUT
@@ -256,6 +261,14 @@ MATH_EXPRESSION_SIGN
     : '$'
     ;
 
+OPEN_BRACKET
+    : '['
+    ;
+
+CLOSE_BRACKET
+    : ']'
+    ;
+
 COMMA
     : ','
     ;
@@ -336,9 +349,9 @@ NUMBER
     | [0]
     ;
 STRING
-    : [A-Za-z\u0391-\u03C9][A-Za-z0-9_.]*
-    | ('\\Alpha' | '\\alpha' | '\\Beta' | '\\beta' | '\\Gamma' | '\\gamma' | '\\epsilon') (STRING)*
+    : [A-Za-z\u0391-\u03C9][A-Za-z0-9_.]* (STRING)*
+    | ('\\Alpha' | '\\alpha' | '\\Beta' | '\\beta' | '\\Gamma' | '\\gamma' | '\\epsilon' | '[' | ']') (STRING)*
     ;
 CUSTOM_STRING
-    : [a-zA-Z0-9\u0410-\u042F\u0430-\u044F]+
+    : [a-zA-Z0-9\u0410-\u042F\u0430-\u044F_.]+
     ;
