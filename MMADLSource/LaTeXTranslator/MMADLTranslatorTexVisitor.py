@@ -44,6 +44,8 @@ class MMADLTranslatorTexVisitor(MMADLTranslatorVisitor):
         self.code_level = 0
         self.tex_level = 1
 
+        self.num_block = 0
+
         self.code_printer = TexCodePrinter()
 
         self.table = TexTable()
@@ -54,7 +56,11 @@ class MMADLTranslatorTexVisitor(MMADLTranslatorVisitor):
             self.code += ' '
 
     def addNewline(self) -> None:
-        self.code += '$ \n\\newline\n $ \\null ' + self.code_level * '\\quad '
+        self.code += '$ \n\\newline\n $ \\null ' + self.code_level * '\\quad'
+
+    def removeIntend(self) -> None:
+        index = self.code.rfind('\\quad')
+        self.code = self.code[:index] + self.code[index + len('\\quad '):]
 
     # Visit a parse tree produced by MMADLParser#mmadl.
     def visitMmadl(self, ctx:MMADLParser.MmadlContext):
@@ -204,7 +210,7 @@ class MMADLTranslatorTexVisitor(MMADLTranslatorVisitor):
 
     # Visit a parse tree produced by MMADLParser#exit_operator.
     def visitExit_operator(self, ctx:MMADLParser.Exit_operatorContext):
-        self.addToken(ctx.getChild(0).getText())
+        self.addToken(self.code_printer.printKeyWord(ctx.getChild(0).getText()))
 
         for i in range(len(ctx.exit_value())):
             self.visit(ctx.exit_value(i))
@@ -267,26 +273,29 @@ class MMADLTranslatorTexVisitor(MMADLTranslatorVisitor):
 
     # Visit a parse tree produced by MMADLParser#if_operator.
     def visitIf_operator(self, ctx:MMADLParser.If_operatorContext):
-        self.addToken(ctx.IF())
+        self.addToken(self.code_printer.printKeyWord(ctx.IF()))
         self.visit(ctx.condition(0))
-        self.addToken(ctx.THEN(0))
+        self.addToken(self.code_printer.printKeyWord(ctx.THEN(0)))
+        self.code_level += 1
         self.addNewline()
 
         self.visit(ctx.body(0))
 
         for i in range(len(ctx.ELSEIF())):
-            self.addToken(ctx.ELSEIF(i))
+            self.addToken(self.code_printer.printKeyWord(ctx.ELSEIF(i)))
             self.visit(ctx.condition(i + 1))
-            self.addToken(ctx.THEN(i + 1))
+            self.addToken(self.code_printer.printKeyWord(ctx.THEN(i + 1)))
             self.addNewline()
             self.visit(ctx.body(i + 1))
 
         if ctx.ELSE() is not None:
-            self.addToken(ctx.ELSE())
+            self.addToken(self.code_printer.printKeyWord(ctx.ELSE()))
             self.addNewline()
             self.visit(ctx.body()[-1])
 
-        self.addToken(ctx.ENDIF())
+        self.code_level -= 1
+        self.removeIntend()
+        self.addToken(self.code_printer.printKeyWord(ctx.ENDIF()))
         self.addNewline()
 
         # return self.visitChildren(ctx)
@@ -294,30 +303,38 @@ class MMADLTranslatorTexVisitor(MMADLTranslatorVisitor):
 
     # Visit a parse tree produced by MMADLParser#loop_operator.
     def visitLoop_operator(self, ctx:MMADLParser.Loop_operatorContext):
-        loop = ctx.getChild(0)
-        self.addToken(loop.getChild(0))
-        self.visit(loop.getChild(1))
-        self.addToken(loop.getChild(2))
-        self.addNewline()
-        self.visit(loop.getChild(3))
-        self.addToken(loop.getChild(4))
-        self.addNewline()
-        # sreturn self.visitChildren(ctx)
+        self.visit(ctx.getChild(0))
 
 
     # Visit a parse tree produced by MMADLParser#for_operator.
     def visitFor_operator(self, ctx:MMADLParser.For_operatorContext):
-        return self.visitChildren(ctx)
+        self.addToken(self.code_printer.printKeyWord(ctx.FOR()))
+        self.visit(ctx.for_range())
+        self.addToken(self.code_printer.printKeyWord(ctx.DO()))
+        self.code_level += 1
+        self.addNewline()
+        self.visit(ctx.body())
+        self.code_level -= 1
+        self.removeIntend()
+        self.addToken(self.code_printer.printKeyWord(ctx.ENDFOR()))
+        return
 
+    def visitInclude(self, ctx:MMADLParser.IncludeContext):
+        self.visit(ctx.param_name())
+        self.addToken(ctx.IN())
+        self.visit(ctx.math_expression())
 
     # Visit a parse tree produced by MMADLParser#while_operator.
     def visitWhile_operator(self, ctx:MMADLParser.While_operatorContext):
-        self.addToken(ctx.WHILE())
+        self.addToken(self.code_printer.printKeyWord(ctx.WHILE()))
         self.visit(ctx.condition())
-        self.addToken(ctx.DO())
+        self.addToken(self.code_printer.printKeyWord(ctx.DO()))
+        self.code_level += 1
         self.addNewline()
         self.visit(ctx.body())
-        self.addToken(ctx.ENDWHILE())
+        self.code_level -= 1
+        self.removeIntend()
+        self.addToken(self.code_printer.printKeyWord(ctx.ENDWHILE()))
         self.addNewline()
 
         # return self.visitChildren(ctx)

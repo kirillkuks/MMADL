@@ -180,7 +180,7 @@ class MMADLParser ( Parser ):
     literalNames = [ "<INVALID>", "'\u0412\u0445\u043E\u0434:'", "'\u0412\u044B\u0445\u043E\u0434:'", 
                      "'if'", "'then'", "'elseif'", "'else'", "'end if'", 
                      "'while'", "'end while'", "'for'", "'end for'", "'do'", 
-                     "'from'", "'to'", "'downto'", "'in'", "'nil'", "'False'", 
+                     "'from'", "'to'", "'downto'", "'\\in'", "'nil'", "'False'", 
                      "'True'", "'return'", "'yield'", "'continue'", "'break'", 
                      "'$'", "'['", "']'", "','", "':'", "';'", "'<-'", "'('", 
                      "')'", "'and'", "'or'", "'&'", "'|'", "'xor'", "'='", 

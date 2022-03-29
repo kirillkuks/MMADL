@@ -15,7 +15,7 @@ null
 'from'
 'to'
 'downto'
-'in'
+'\\in'
 'nil'
 'False'
 'True'

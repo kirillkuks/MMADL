@@ -8,9 +8,9 @@
     T <- R <\end>
 
 <Каскад циклов for> := <\begin>
-    for i in 1..n do
-        for j in 1..n do
-            for k in 1..n do
+    for i \in 1..n do
+        for j \in 1..n do
+            for k \in 1..n do
                 T[j][k] <- <Вычисление>
             end for
         end for

@@ -230,7 +230,7 @@ DOWNTO
     ;
 
 IN
-    : 'in'
+    : '\\in'
     ;
 
 NIL
