@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> f2839de776c479c0ef8394ad0dccc7629590f282
 	Вход: a: \pointer elem_t, b: \pointer elem_t
 	Выход: bool
 	
