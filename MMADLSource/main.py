@@ -8,6 +8,7 @@ from MMADLRetranslator import MMADLRetranslator
 from MMADLTranslator import MMADLTranslator
 
 from LaTeXTranslator.MMADLTranslatorTex import MMADLTranslatorTex
+from HTMLTranslator.MMADLTranslatorHTML import MMADLTranslatorHTML
 
 
 def parse_argv() -> argparse.Namespace:
@@ -31,10 +32,10 @@ def main(parser_args: argparse.Namespace):
 
     temp_code = parser.MMADL_to_temp()
 
-    with codecs.open('temp3.mmadlt', 'w', 'utf_8') as f:
+    with codecs.open('temp1.mmadlt', 'w', 'utf_8') as f:
         f.write(temp_code)
 
-    retranslator = MMADLTranslatorTex('temp3.mmadlt')
+    retranslator = MMADLTranslatorHTML('temp1.mmadlt')
     # retranslator = MMADLRetranslator('temp.mmadlt')
     code = retranslator.translate()
     print(code)

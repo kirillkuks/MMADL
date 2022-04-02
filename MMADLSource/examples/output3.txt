@@ -20,41 +20,25 @@
 
 
 \begin{document}
- $ \textbf{\textcolor{blue}{Вход:}} \  \textcolor{black}{a} \  \textcolor{black}{:} \  \uparrow \  \textbf{\textcolor{blue}{elem\_t}} \  \textcolor{black}{,} \  \textcolor{black}{b} \  \textcolor{black}{:} \  \uparrow \  \textbf{\textcolor{blue}{elem\_t}} \   $ 
+ $ \textbf{\textcolor{blue}{Вход:}} \  \textcolor{black}{R} \  \textcolor{black}{:} \  \uparrow \  \textbf{\textcolor{blue}{array}} \   $ 
 \newline
- $ \null \textbf{\textcolor{blue}{Выход:}} \  \textbf{\textcolor{blue}{bool}} \   $ 
+ $ \null \textbf{\textcolor{blue}{Выход:}} \  \textbf{\textcolor{blue}{array}} \   $ 
 \newline
- $ \null \textcolor{black}{pa} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{a} \  \textcolor{black}{;} \  \textcolor{black}{pb} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{b} \   $ 
+ $ \null \textcolor{black}{T} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{R} \   $ 
 \newline
- $ \null \textbf{\textcolor{blue}{while}} \  \textcolor{black}{pa} \  != nil & \textcolor{black}{pb} \  != nil \textbf{\textcolor{blue}{do}} \  $ 
+ $ \null \textbf{\textcolor{blue}{for}} \  \textcolor{black}{i} \  \in   \textcolor{black}{1..n} \    \textbf{\textcolor{blue}{do}} \  $ 
 \newline
- $ \null \quad\textbf{\textcolor{blue}{if}} \  \textcolor{black}{pa.i} \  < \textcolor{black}{pb.i} \  \textbf{\textcolor{blue}{then}} \  $ 
+ $ \null \quad\textbf{\textcolor{blue}{for}} \  \textcolor{black}{j} \  \in   \textcolor{black}{1..n} \    \textbf{\textcolor{blue}{do}} \  $ 
 \newline
- $ \null \quad\quad\textbf{\textcolor{blue}{return}} \  False $ 
+ $ \null \quad\quad\textbf{\textcolor{blue}{for}} \  \textcolor{black}{k} \  \in   \textcolor{black}{1..n} \    \textbf{\textcolor{blue}{do}} \  $ 
 \newline
- $ \null \quad\quad $ 
+ $ \null \quad\quad\quad\textcolor{black}{T[j][k]} \  \textcolor{black}{\leftarrow} \    \textcolor{black}{T[j][k]} \  \textcolor{black}{+} \  \textcolor{black}{T[i][j]} \  \textcolor{black}{*} \  \textcolor{black}{T[i][k]} \     $ 
 \newline
- $ \null \quad\quad\textbf{\textcolor{blue}{elseif}} \  \textcolor{black}{pa.i} \  > \textcolor{black}{pb.i} \  \textbf{\textcolor{blue}{then}} \  $ 
+ $ \null \quad\quad\textbf{\textcolor{blue}{end for}} \   $ 
 \newline
- $ \null \quad\quad\textcolor{black}{pb} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{pb.n} \   $ 
+ $ \null \quad\textbf{\textcolor{blue}{end for}} \   $ 
 \newline
- $ \null \quad\quad\textbf{\textcolor{blue}{else}} \  $ 
-\newline
- $ \null \quad\quad\textcolor{black}{pa} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{pa.n} \   $ 
-\newline
- $ \null \quad\quad\textcolor{black}{pb} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{pb.n} \   $ 
-\newline
- $ \null \quad\textbf{\textcolor{blue}{end if}} \  $ 
-\newline
- $ \null \quad $ 
-\newline
- $ \null \textbf{\textcolor{blue}{end while}} \  $ 
-\newline
- $ \null  $ 
-\newline
- $ \null \textsl{\textcolor{green}{*/Простотекст/*}} \  \textbf{\textcolor{blue}{return}} \  \textcolor{black}{pa} \  = nil $ 
-\newline
- $ \null  $ 
+ $ \null \textbf{\textcolor{blue}{end for}} \   $ 
 \newline
  $ \null $ 
 \end{document}

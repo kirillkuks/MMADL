@@ -1,24 +1,14 @@
 
-	Вход: a: \pointer elem_t, b: \pointer elem_t
-	Выход: bool
-	
-	pa <- a; pb <- b 
-	
-	while pa != nil & pb != nil do
-		if 
-	pa.i < pb.i  then
-			
-	return False 
-		elseif 
-	pa.i > pb.i  then
-			
-	pb <- pb.n 
-		else
-			
-	pa <- pa.n
-	pb <- pb.n 
-		end if
-	end while 
-	<\cb> Простотекст <\ce>
-	
-	return pa = nil  
+    Вход: R: \pointer array
+    Выход: array
+    
+    T <- R 
+    
+    for i \in 1..n do
+        for j \in 1..n do
+            for k \in 1..n do
+                T[j][k] <- 
+    $T[j][k] + T[i][j] * T[i][k]$ 
+            end for
+        end for
+    end for  
