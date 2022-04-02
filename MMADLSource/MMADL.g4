@@ -40,7 +40,7 @@ body
     ;
 
 comment
-    : OPENCOMMENT CUSTOM_STRING CLOSECOMMENT
+    : OPENCOMMENT CUSTOM_STRING CLOSECOMMENT (NEW_LINE)?
     ;
 
 operators_list
@@ -354,4 +354,8 @@ STRING
     ;
 CUSTOM_STRING
     : [a-zA-Z0-9\u0410-\u042F\u0430-\u044F_.]+
+    ;
+
+NEW_LINE
+    : '\\n'
     ;
