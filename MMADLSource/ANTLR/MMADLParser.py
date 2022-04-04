@@ -11,8 +11,8 @@ else:
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\66")
-        buf.write("\u015d\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\65")
+        buf.write("\u015b\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
         buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
         buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
         buf.write("\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31")
@@ -26,145 +26,144 @@ def serializedATN():
         buf.write("\3\t\3\t\5\t\u008a\n\t\3\t\5\t\u008d\n\t\3\n\3\n\3\n\3")
         buf.write("\n\7\n\u0093\n\n\f\n\16\n\u0096\13\n\3\n\3\n\3\13\3\13")
         buf.write("\7\13\u009c\n\13\f\13\16\13\u009f\13\13\3\f\3\f\3\f\3")
-        buf.write("\f\5\f\u00a5\n\f\3\r\3\r\3\r\7\r\u00aa\n\r\f\r\16\r\u00ad")
-        buf.write("\13\r\3\16\3\16\5\16\u00b1\n\16\3\17\3\17\3\17\3\17\5")
-        buf.write("\17\u00b7\n\17\3\20\3\20\5\20\u00bb\n\20\3\20\3\20\3\20")
-        buf.write("\5\20\u00c0\n\20\3\21\3\21\5\21\u00c4\n\21\3\22\3\22\3")
-        buf.write("\22\3\22\3\23\3\23\3\23\5\23\u00cd\n\23\3\24\3\24\3\24")
-        buf.write("\5\24\u00d2\n\24\7\24\u00d4\n\24\f\24\16\24\u00d7\13\24")
-        buf.write("\3\25\3\25\5\25\u00db\n\25\3\26\3\26\3\27\3\27\3\27\3")
-        buf.write("\27\7\27\u00e3\n\27\f\27\16\27\u00e6\13\27\3\27\3\27\3")
-        buf.write("\27\3\27\5\27\u00ec\n\27\3\30\3\30\3\30\3\30\3\30\3\31")
-        buf.write("\3\31\5\31\u00f5\n\31\7\31\u00f7\n\31\f\31\16\31\u00fa")
-        buf.write("\13\31\3\32\3\32\5\32\u00fe\n\32\3\33\3\33\3\34\3\34\5")
-        buf.write("\34\u0104\n\34\3\35\3\35\3\35\3\35\3\35\3\35\3\35\3\35")
-        buf.write("\3\35\7\35\u010f\n\35\f\35\16\35\u0112\13\35\3\35\3\35")
-        buf.write("\5\35\u0116\n\35\3\35\3\35\3\36\3\36\5\36\u011c\n\36\3")
-        buf.write("\37\3\37\3\37\3\37\3\37\3\37\3 \3 \3 \3 \3 \3 \3!\3!\5")
-        buf.write("!\u012c\n!\3\"\3\"\3\"\3\"\3#\3#\3#\3#\3$\3$\3$\3$\3$")
-        buf.write("\3$\3%\3%\3%\3%\7%\u0140\n%\f%\16%\u0143\13%\3&\3&\3&")
-        buf.write("\3&\3&\3&\3&\5&\u014c\n&\5&\u014e\n&\3\'\3\'\3(\3(\5(")
-        buf.write("\u0154\n(\3(\3(\3(\5(\u0159\n(\3)\3)\3)\2\2*\2\4\6\b\n")
-        buf.write("\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:<")
-        buf.write(">@BDFHJLNP\2\b\3\2\26\27\3\2\30\31\3\2\24\25\3\2\20\21")
-        buf.write("\3\2#\'\4\2\22\22(-\2\u015f\2S\3\2\2\2\4W\3\2\2\2\6\\")
-        buf.write("\3\2\2\2\bb\3\2\2\2\nn\3\2\2\2\fq\3\2\2\2\16z\3\2\2\2")
-        buf.write("\20\u008c\3\2\2\2\22\u008e\3\2\2\2\24\u009d\3\2\2\2\26")
-        buf.write("\u00a0\3\2\2\2\30\u00a6\3\2\2\2\32\u00b0\3\2\2\2\34\u00b6")
-        buf.write("\3\2\2\2\36\u00b8\3\2\2\2 \u00c3\3\2\2\2\"\u00c5\3\2\2")
-        buf.write("\2$\u00cc\3\2\2\2&\u00ce\3\2\2\2(\u00da\3\2\2\2*\u00dc")
-        buf.write("\3\2\2\2,\u00eb\3\2\2\2.\u00ed\3\2\2\2\60\u00f8\3\2\2")
-        buf.write("\2\62\u00fd\3\2\2\2\64\u00ff\3\2\2\2\66\u0103\3\2\2\2")
-        buf.write("8\u0105\3\2\2\2:\u011b\3\2\2\2<\u011d\3\2\2\2>\u0123\3")
-        buf.write("\2\2\2@\u012b\3\2\2\2B\u012d\3\2\2\2D\u0131\3\2\2\2F\u0135")
-        buf.write("\3\2\2\2H\u013b\3\2\2\2J\u014d\3\2\2\2L\u014f\3\2\2\2")
-        buf.write("N\u0153\3\2\2\2P\u015a\3\2\2\2RT\5\4\3\2SR\3\2\2\2ST\3")
-        buf.write("\2\2\2TU\3\2\2\2UV\5\24\13\2V\3\3\2\2\2WX\5\6\4\2XY\5")
-        buf.write("\b\5\2YZ\5\n\6\2Z[\5\f\7\2[\5\3\2\2\2\\]\7\3\2\2]\7\3")
-        buf.write("\2\2\2^_\5\16\b\2_`\7\36\2\2`a\5\20\t\2ac\3\2\2\2b^\3")
-        buf.write("\2\2\2bc\3\2\2\2ck\3\2\2\2de\7\35\2\2ef\5\16\b\2fg\7\36")
-        buf.write("\2\2gh\5\20\t\2hj\3\2\2\2id\3\2\2\2jm\3\2\2\2ki\3\2\2")
-        buf.write("\2kl\3\2\2\2l\t\3\2\2\2mk\3\2\2\2no\7\4\2\2o\13\3\2\2")
-        buf.write("\2pr\5\20\t\2qp\3\2\2\2qr\3\2\2\2rw\3\2\2\2st\7\35\2\2")
-        buf.write("tv\5\20\t\2us\3\2\2\2vy\3\2\2\2wu\3\2\2\2wx\3\2\2\2x\r")
-        buf.write("\3\2\2\2yw\3\2\2\2z~\7\64\2\2{}\5B\"\2|{\3\2\2\2}\u0080")
-        buf.write("\3\2\2\2~|\3\2\2\2~\177\3\2\2\2\177\17\3\2\2\2\u0080~")
-        buf.write("\3\2\2\2\u0081\u0083\7.\2\2\u0082\u0081\3\2\2\2\u0083")
-        buf.write("\u0086\3\2\2\2\u0084\u0082\3\2\2\2\u0084\u0085\3\2\2\2")
-        buf.write("\u0085\u0089\3\2\2\2\u0086\u0084\3\2\2\2\u0087\u008a\7")
-        buf.write("\64\2\2\u0088\u008a\5\22\n\2\u0089\u0087\3\2\2\2\u0089")
-        buf.write("\u0088\3\2\2\2\u008a\u008d\3\2\2\2\u008b\u008d\7\64\2")
-        buf.write("\2\u008c\u0084\3\2\2\2\u008c\u008b\3\2\2\2\u008d\21\3")
-        buf.write("\2\2\2\u008e\u008f\7+\2\2\u008f\u0094\5\20\t\2\u0090\u0091")
-        buf.write("\7\35\2\2\u0091\u0093\5\20\t\2\u0092\u0090\3\2\2\2\u0093")
-        buf.write("\u0096\3\2\2\2\u0094\u0092\3\2\2\2\u0094\u0095\3\2\2\2")
-        buf.write("\u0095\u0097\3\2\2\2\u0096\u0094\3\2\2\2\u0097\u0098\7")
-        buf.write("*\2\2\u0098\23\3\2\2\2\u0099\u009c\5\30\r\2\u009a\u009c")
-        buf.write("\5\26\f\2\u009b\u0099\3\2\2\2\u009b\u009a\3\2\2\2\u009c")
-        buf.write("\u009f\3\2\2\2\u009d\u009b\3\2\2\2\u009d\u009e\3\2\2\2")
-        buf.write("\u009e\25\3\2\2\2\u009f\u009d\3\2\2\2\u00a0\u00a1\7/\2")
-        buf.write("\2\u00a1\u00a2\7\65\2\2\u00a2\u00a4\7\60\2\2\u00a3\u00a5")
-        buf.write("\7\66\2\2\u00a4\u00a3\3\2\2\2\u00a4\u00a5\3\2\2\2\u00a5")
-        buf.write("\27\3\2\2\2\u00a6\u00ab\5\32\16\2\u00a7\u00a8\7\37\2\2")
-        buf.write("\u00a8\u00aa\5\32\16\2\u00a9\u00a7\3\2\2\2\u00aa\u00ad")
-        buf.write("\3\2\2\2\u00ab\u00a9\3\2\2\2\u00ab\u00ac\3\2\2\2\u00ac")
-        buf.write("\31\3\2\2\2\u00ad\u00ab\3\2\2\2\u00ae\u00b1\5\34\17\2")
-        buf.write("\u00af\u00b1\5\66\34\2\u00b0\u00ae\3\2\2\2\u00b0\u00af")
-        buf.write("\3\2\2\2\u00b1\33\3\2\2\2\u00b2\u00b7\5\36\20\2\u00b3")
-        buf.write("\u00b7\5 \21\2\u00b4\u00b7\5\"\22\2\u00b5\u00b7\5$\23")
-        buf.write("\2\u00b6\u00b2\3\2\2\2\u00b6\u00b3\3\2\2\2\u00b6\u00b4")
-        buf.write("\3\2\2\2\u00b6\u00b5\3\2\2\2\u00b7\35\3\2\2\2\u00b8\u00ba")
-        buf.write("\5\16\b\2\u00b9\u00bb\5\20\t\2\u00ba\u00b9\3\2\2\2\u00ba")
-        buf.write("\u00bb\3\2\2\2\u00bb\u00bc\3\2\2\2\u00bc\u00bf\7 \2\2")
-        buf.write("\u00bd\u00c0\5\16\b\2\u00be\u00c0\5$\23\2\u00bf\u00bd")
-        buf.write("\3\2\2\2\u00bf\u00be\3\2\2\2\u00c0\37\3\2\2\2\u00c1\u00c4")
-        buf.write("\5&\24\2\u00c2\u00c4\5*\26\2\u00c3\u00c1\3\2\2\2\u00c3")
-        buf.write("\u00c2\3\2\2\2\u00c4!\3\2\2\2\u00c5\u00c6\5\16\b\2\u00c6")
-        buf.write("\u00c7\7\36\2\2\u00c7\u00c8\5\20\t\2\u00c8#\3\2\2\2\u00c9")
-        buf.write("\u00cd\5,\27\2\u00ca\u00cd\5\62\32\2\u00cb\u00cd\5.\30")
-        buf.write("\2\u00cc\u00c9\3\2\2\2\u00cc\u00ca\3\2\2\2\u00cc\u00cb")
-        buf.write("\3\2\2\2\u00cd%\3\2\2\2\u00ce\u00d5\t\2\2\2\u00cf\u00d1")
-        buf.write("\5(\25\2\u00d0\u00d2\7\35\2\2\u00d1\u00d0\3\2\2\2\u00d1")
-        buf.write("\u00d2\3\2\2\2\u00d2\u00d4\3\2\2\2\u00d3\u00cf\3\2\2\2")
-        buf.write("\u00d4\u00d7\3\2\2\2\u00d5\u00d3\3\2\2\2\u00d5\u00d6\3")
-        buf.write("\2\2\2\u00d6\'\3\2\2\2\u00d7\u00d5\3\2\2\2\u00d8\u00db")
-        buf.write("\5$\23\2\u00d9\u00db\5H%\2\u00da\u00d8\3\2\2\2\u00da\u00d9")
-        buf.write("\3\2\2\2\u00db)\3\2\2\2\u00dc\u00dd\t\3\2\2\u00dd+\3\2")
-        buf.write("\2\2\u00de\u00df\7\32\2\2\u00df\u00e4\5\16\b\2\u00e0\u00e1")
-        buf.write("\7\62\2\2\u00e1\u00e3\5\16\b\2\u00e2\u00e0\3\2\2\2\u00e3")
-        buf.write("\u00e6\3\2\2\2\u00e4\u00e2\3\2\2\2\u00e4\u00e5\3\2\2\2")
-        buf.write("\u00e5\u00e7\3\2\2\2\u00e6\u00e4\3\2\2\2\u00e7\u00e8\7")
-        buf.write("\32\2\2\u00e8\u00ec\3\2\2\2\u00e9\u00ec\7\65\2\2\u00ea")
-        buf.write("\u00ec\7\63\2\2\u00eb\u00de\3\2\2\2\u00eb\u00e9\3\2\2")
-        buf.write("\2\u00eb\u00ea\3\2\2\2\u00ec-\3\2\2\2\u00ed\u00ee\7\64")
-        buf.write("\2\2\u00ee\u00ef\7!\2\2\u00ef\u00f0\5\60\31\2\u00f0\u00f1")
-        buf.write("\7\"\2\2\u00f1/\3\2\2\2\u00f2\u00f4\5\16\b\2\u00f3\u00f5")
-        buf.write("\7\35\2\2\u00f4\u00f3\3\2\2\2\u00f4\u00f5\3\2\2\2\u00f5")
-        buf.write("\u00f7\3\2\2\2\u00f6\u00f2\3\2\2\2\u00f7\u00fa\3\2\2\2")
-        buf.write("\u00f8\u00f6\3\2\2\2\u00f8\u00f9\3\2\2\2\u00f9\61\3\2")
-        buf.write("\2\2\u00fa\u00f8\3\2\2\2\u00fb\u00fe\5\64\33\2\u00fc\u00fe")
-        buf.write("\7\23\2\2\u00fd\u00fb\3\2\2\2\u00fd\u00fc\3\2\2\2\u00fe")
-        buf.write("\63\3\2\2\2\u00ff\u0100\t\4\2\2\u0100\65\3\2\2\2\u0101")
-        buf.write("\u0104\58\35\2\u0102\u0104\5:\36\2\u0103\u0101\3\2\2\2")
-        buf.write("\u0103\u0102\3\2\2\2\u0104\67\3\2\2\2\u0105\u0106\7\5")
-        buf.write("\2\2\u0106\u0107\5H%\2\u0107\u0108\7\6\2\2\u0108\u0110")
-        buf.write("\5\24\13\2\u0109\u010a\7\7\2\2\u010a\u010b\5H%\2\u010b")
-        buf.write("\u010c\7\6\2\2\u010c\u010d\5\24\13\2\u010d\u010f\3\2\2")
-        buf.write("\2\u010e\u0109\3\2\2\2\u010f\u0112\3\2\2\2\u0110\u010e")
-        buf.write("\3\2\2\2\u0110\u0111\3\2\2\2\u0111\u0115\3\2\2\2\u0112")
-        buf.write("\u0110\3\2\2\2\u0113\u0114\7\b\2\2\u0114\u0116\5\24\13")
-        buf.write("\2\u0115\u0113\3\2\2\2\u0115\u0116\3\2\2\2\u0116\u0117")
-        buf.write("\3\2\2\2\u0117\u0118\7\t\2\2\u01189\3\2\2\2\u0119\u011c")
-        buf.write("\5<\37\2\u011a\u011c\5> \2\u011b\u0119\3\2\2\2\u011b\u011a")
-        buf.write("\3\2\2\2\u011c;\3\2\2\2\u011d\u011e\7\f\2\2\u011e\u011f")
-        buf.write("\5@!\2\u011f\u0120\7\16\2\2\u0120\u0121\5\24\13\2\u0121")
-        buf.write("\u0122\7\r\2\2\u0122=\3\2\2\2\u0123\u0124\7\n\2\2\u0124")
-        buf.write("\u0125\5H%\2\u0125\u0126\7\16\2\2\u0126\u0127\5\24\13")
-        buf.write("\2\u0127\u0128\7\13\2\2\u0128?\3\2\2\2\u0129\u012c\5D")
-        buf.write("#\2\u012a\u012c\5F$\2\u012b\u0129\3\2\2\2\u012b\u012a")
-        buf.write("\3\2\2\2\u012cA\3\2\2\2\u012d\u012e\7\33\2\2\u012e\u012f")
-        buf.write("\7\64\2\2\u012f\u0130\7\34\2\2\u0130C\3\2\2\2\u0131\u0132")
-        buf.write("\5\16\b\2\u0132\u0133\7\22\2\2\u0133\u0134\5,\27\2\u0134")
-        buf.write("E\3\2\2\2\u0135\u0136\5\16\b\2\u0136\u0137\7\17\2\2\u0137")
-        buf.write("\u0138\5,\27\2\u0138\u0139\t\5\2\2\u0139\u013a\5,\27\2")
-        buf.write("\u013aG\3\2\2\2\u013b\u0141\5J&\2\u013c\u013d\5L\'\2\u013d")
-        buf.write("\u013e\5J&\2\u013e\u0140\3\2\2\2\u013f\u013c\3\2\2\2\u0140")
-        buf.write("\u0143\3\2\2\2\u0141\u013f\3\2\2\2\u0141\u0142\3\2\2\2")
-        buf.write("\u0142I\3\2\2\2\u0143\u0141\3\2\2\2\u0144\u0145\7!\2\2")
-        buf.write("\u0145\u0146\5H%\2\u0146\u0147\7\"\2\2\u0147\u014e\3\2")
-        buf.write("\2\2\u0148\u014c\5\64\33\2\u0149\u014c\5,\27\2\u014a\u014c")
-        buf.write("\5N(\2\u014b\u0148\3\2\2\2\u014b\u0149\3\2\2\2\u014b\u014a")
-        buf.write("\3\2\2\2\u014c\u014e\3\2\2\2\u014d\u0144\3\2\2\2\u014d")
-        buf.write("\u014b\3\2\2\2\u014eK\3\2\2\2\u014f\u0150\t\6\2\2\u0150")
-        buf.write("M\3\2\2\2\u0151\u0154\5\16\b\2\u0152\u0154\5$\23\2\u0153")
-        buf.write("\u0151\3\2\2\2\u0153\u0152\3\2\2\2\u0154\u0155\3\2\2\2")
-        buf.write("\u0155\u0158\5P)\2\u0156\u0159\5\16\b\2\u0157\u0159\5")
-        buf.write("$\23\2\u0158\u0156\3\2\2\2\u0158\u0157\3\2\2\2\u0159O")
-        buf.write("\3\2\2\2\u015a\u015b\t\7\2\2\u015bQ\3\2\2\2(Sbkqw~\u0084")
-        buf.write("\u0089\u008c\u0094\u009b\u009d\u00a4\u00ab\u00b0\u00b6")
-        buf.write("\u00ba\u00bf\u00c3\u00cc\u00d1\u00d5\u00da\u00e4\u00eb")
-        buf.write("\u00f4\u00f8\u00fd\u0103\u0110\u0115\u011b\u012b\u0141")
-        buf.write("\u014b\u014d\u0153\u0158")
+        buf.write("\f\3\r\3\r\3\r\7\r\u00a8\n\r\f\r\16\r\u00ab\13\r\3\16")
+        buf.write("\3\16\5\16\u00af\n\16\3\17\3\17\3\17\3\17\5\17\u00b5\n")
+        buf.write("\17\3\20\3\20\5\20\u00b9\n\20\3\20\3\20\3\20\5\20\u00be")
+        buf.write("\n\20\3\21\3\21\5\21\u00c2\n\21\3\22\3\22\3\22\3\22\3")
+        buf.write("\23\3\23\3\23\5\23\u00cb\n\23\3\24\3\24\3\24\5\24\u00d0")
+        buf.write("\n\24\7\24\u00d2\n\24\f\24\16\24\u00d5\13\24\3\25\3\25")
+        buf.write("\5\25\u00d9\n\25\3\26\3\26\3\27\3\27\3\27\3\27\7\27\u00e1")
+        buf.write("\n\27\f\27\16\27\u00e4\13\27\3\27\3\27\3\27\3\27\5\27")
+        buf.write("\u00ea\n\27\3\30\3\30\3\30\3\30\3\30\3\31\3\31\5\31\u00f3")
+        buf.write("\n\31\7\31\u00f5\n\31\f\31\16\31\u00f8\13\31\3\32\3\32")
+        buf.write("\5\32\u00fc\n\32\3\33\3\33\3\34\3\34\5\34\u0102\n\34\3")
+        buf.write("\35\3\35\3\35\3\35\3\35\3\35\3\35\3\35\3\35\7\35\u010d")
+        buf.write("\n\35\f\35\16\35\u0110\13\35\3\35\3\35\5\35\u0114\n\35")
+        buf.write("\3\35\3\35\3\36\3\36\5\36\u011a\n\36\3\37\3\37\3\37\3")
+        buf.write("\37\3\37\3\37\3 \3 \3 \3 \3 \3 \3!\3!\5!\u012a\n!\3\"")
+        buf.write("\3\"\3\"\3\"\3#\3#\3#\3#\3$\3$\3$\3$\3$\3$\3%\3%\3%\3")
+        buf.write("%\7%\u013e\n%\f%\16%\u0141\13%\3&\3&\3&\3&\3&\3&\3&\5")
+        buf.write("&\u014a\n&\5&\u014c\n&\3\'\3\'\3(\3(\5(\u0152\n(\3(\3")
+        buf.write("(\3(\5(\u0157\n(\3)\3)\3)\2\2*\2\4\6\b\n\f\16\20\22\24")
+        buf.write("\26\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BDFHJLNP\2\b")
+        buf.write("\3\2\26\27\3\2\30\31\3\2\24\25\3\2\20\21\3\2#\'\4\2\22")
+        buf.write("\22(-\2\u015c\2S\3\2\2\2\4W\3\2\2\2\6\\\3\2\2\2\bb\3\2")
+        buf.write("\2\2\nn\3\2\2\2\fq\3\2\2\2\16z\3\2\2\2\20\u008c\3\2\2")
+        buf.write("\2\22\u008e\3\2\2\2\24\u009d\3\2\2\2\26\u00a0\3\2\2\2")
+        buf.write("\30\u00a4\3\2\2\2\32\u00ae\3\2\2\2\34\u00b4\3\2\2\2\36")
+        buf.write("\u00b6\3\2\2\2 \u00c1\3\2\2\2\"\u00c3\3\2\2\2$\u00ca\3")
+        buf.write("\2\2\2&\u00cc\3\2\2\2(\u00d8\3\2\2\2*\u00da\3\2\2\2,\u00e9")
+        buf.write("\3\2\2\2.\u00eb\3\2\2\2\60\u00f6\3\2\2\2\62\u00fb\3\2")
+        buf.write("\2\2\64\u00fd\3\2\2\2\66\u0101\3\2\2\28\u0103\3\2\2\2")
+        buf.write(":\u0119\3\2\2\2<\u011b\3\2\2\2>\u0121\3\2\2\2@\u0129\3")
+        buf.write("\2\2\2B\u012b\3\2\2\2D\u012f\3\2\2\2F\u0133\3\2\2\2H\u0139")
+        buf.write("\3\2\2\2J\u014b\3\2\2\2L\u014d\3\2\2\2N\u0151\3\2\2\2")
+        buf.write("P\u0158\3\2\2\2RT\5\4\3\2SR\3\2\2\2ST\3\2\2\2TU\3\2\2")
+        buf.write("\2UV\5\24\13\2V\3\3\2\2\2WX\5\6\4\2XY\5\b\5\2YZ\5\n\6")
+        buf.write("\2Z[\5\f\7\2[\5\3\2\2\2\\]\7\3\2\2]\7\3\2\2\2^_\5\16\b")
+        buf.write("\2_`\7\36\2\2`a\5\20\t\2ac\3\2\2\2b^\3\2\2\2bc\3\2\2\2")
+        buf.write("ck\3\2\2\2de\7\35\2\2ef\5\16\b\2fg\7\36\2\2gh\5\20\t\2")
+        buf.write("hj\3\2\2\2id\3\2\2\2jm\3\2\2\2ki\3\2\2\2kl\3\2\2\2l\t")
+        buf.write("\3\2\2\2mk\3\2\2\2no\7\4\2\2o\13\3\2\2\2pr\5\20\t\2qp")
+        buf.write("\3\2\2\2qr\3\2\2\2rw\3\2\2\2st\7\35\2\2tv\5\20\t\2us\3")
+        buf.write("\2\2\2vy\3\2\2\2wu\3\2\2\2wx\3\2\2\2x\r\3\2\2\2yw\3\2")
+        buf.write("\2\2z~\7\64\2\2{}\5B\"\2|{\3\2\2\2}\u0080\3\2\2\2~|\3")
+        buf.write("\2\2\2~\177\3\2\2\2\177\17\3\2\2\2\u0080~\3\2\2\2\u0081")
+        buf.write("\u0083\7.\2\2\u0082\u0081\3\2\2\2\u0083\u0086\3\2\2\2")
+        buf.write("\u0084\u0082\3\2\2\2\u0084\u0085\3\2\2\2\u0085\u0089\3")
+        buf.write("\2\2\2\u0086\u0084\3\2\2\2\u0087\u008a\7\64\2\2\u0088")
+        buf.write("\u008a\5\22\n\2\u0089\u0087\3\2\2\2\u0089\u0088\3\2\2")
+        buf.write("\2\u008a\u008d\3\2\2\2\u008b\u008d\7\64\2\2\u008c\u0084")
+        buf.write("\3\2\2\2\u008c\u008b\3\2\2\2\u008d\21\3\2\2\2\u008e\u008f")
+        buf.write("\7+\2\2\u008f\u0094\5\20\t\2\u0090\u0091\7\35\2\2\u0091")
+        buf.write("\u0093\5\20\t\2\u0092\u0090\3\2\2\2\u0093\u0096\3\2\2")
+        buf.write("\2\u0094\u0092\3\2\2\2\u0094\u0095\3\2\2\2\u0095\u0097")
+        buf.write("\3\2\2\2\u0096\u0094\3\2\2\2\u0097\u0098\7*\2\2\u0098")
+        buf.write("\23\3\2\2\2\u0099\u009c\5\30\r\2\u009a\u009c\5\26\f\2")
+        buf.write("\u009b\u0099\3\2\2\2\u009b\u009a\3\2\2\2\u009c\u009f\3")
+        buf.write("\2\2\2\u009d\u009b\3\2\2\2\u009d\u009e\3\2\2\2\u009e\25")
+        buf.write("\3\2\2\2\u009f\u009d\3\2\2\2\u00a0\u00a1\7/\2\2\u00a1")
+        buf.write("\u00a2\7\65\2\2\u00a2\u00a3\7\60\2\2\u00a3\27\3\2\2\2")
+        buf.write("\u00a4\u00a9\5\32\16\2\u00a5\u00a6\7\37\2\2\u00a6\u00a8")
+        buf.write("\5\32\16\2\u00a7\u00a5\3\2\2\2\u00a8\u00ab\3\2\2\2\u00a9")
+        buf.write("\u00a7\3\2\2\2\u00a9\u00aa\3\2\2\2\u00aa\31\3\2\2\2\u00ab")
+        buf.write("\u00a9\3\2\2\2\u00ac\u00af\5\34\17\2\u00ad\u00af\5\66")
+        buf.write("\34\2\u00ae\u00ac\3\2\2\2\u00ae\u00ad\3\2\2\2\u00af\33")
+        buf.write("\3\2\2\2\u00b0\u00b5\5\36\20\2\u00b1\u00b5\5 \21\2\u00b2")
+        buf.write("\u00b5\5\"\22\2\u00b3\u00b5\5$\23\2\u00b4\u00b0\3\2\2")
+        buf.write("\2\u00b4\u00b1\3\2\2\2\u00b4\u00b2\3\2\2\2\u00b4\u00b3")
+        buf.write("\3\2\2\2\u00b5\35\3\2\2\2\u00b6\u00b8\5\16\b\2\u00b7\u00b9")
+        buf.write("\5\20\t\2\u00b8\u00b7\3\2\2\2\u00b8\u00b9\3\2\2\2\u00b9")
+        buf.write("\u00ba\3\2\2\2\u00ba\u00bd\7 \2\2\u00bb\u00be\5\16\b\2")
+        buf.write("\u00bc\u00be\5$\23\2\u00bd\u00bb\3\2\2\2\u00bd\u00bc\3")
+        buf.write("\2\2\2\u00be\37\3\2\2\2\u00bf\u00c2\5&\24\2\u00c0\u00c2")
+        buf.write("\5*\26\2\u00c1\u00bf\3\2\2\2\u00c1\u00c0\3\2\2\2\u00c2")
+        buf.write("!\3\2\2\2\u00c3\u00c4\5\16\b\2\u00c4\u00c5\7\36\2\2\u00c5")
+        buf.write("\u00c6\5\20\t\2\u00c6#\3\2\2\2\u00c7\u00cb\5,\27\2\u00c8")
+        buf.write("\u00cb\5\62\32\2\u00c9\u00cb\5.\30\2\u00ca\u00c7\3\2\2")
+        buf.write("\2\u00ca\u00c8\3\2\2\2\u00ca\u00c9\3\2\2\2\u00cb%\3\2")
+        buf.write("\2\2\u00cc\u00d3\t\2\2\2\u00cd\u00cf\5(\25\2\u00ce\u00d0")
+        buf.write("\7\35\2\2\u00cf\u00ce\3\2\2\2\u00cf\u00d0\3\2\2\2\u00d0")
+        buf.write("\u00d2\3\2\2\2\u00d1\u00cd\3\2\2\2\u00d2\u00d5\3\2\2\2")
+        buf.write("\u00d3\u00d1\3\2\2\2\u00d3\u00d4\3\2\2\2\u00d4\'\3\2\2")
+        buf.write("\2\u00d5\u00d3\3\2\2\2\u00d6\u00d9\5$\23\2\u00d7\u00d9")
+        buf.write("\5H%\2\u00d8\u00d6\3\2\2\2\u00d8\u00d7\3\2\2\2\u00d9)")
+        buf.write("\3\2\2\2\u00da\u00db\t\3\2\2\u00db+\3\2\2\2\u00dc\u00dd")
+        buf.write("\7\32\2\2\u00dd\u00e2\5\16\b\2\u00de\u00df\7\62\2\2\u00df")
+        buf.write("\u00e1\5\16\b\2\u00e0\u00de\3\2\2\2\u00e1\u00e4\3\2\2")
+        buf.write("\2\u00e2\u00e0\3\2\2\2\u00e2\u00e3\3\2\2\2\u00e3\u00e5")
+        buf.write("\3\2\2\2\u00e4\u00e2\3\2\2\2\u00e5\u00e6\7\32\2\2\u00e6")
+        buf.write("\u00ea\3\2\2\2\u00e7\u00ea\7\65\2\2\u00e8\u00ea\7\63\2")
+        buf.write("\2\u00e9\u00dc\3\2\2\2\u00e9\u00e7\3\2\2\2\u00e9\u00e8")
+        buf.write("\3\2\2\2\u00ea-\3\2\2\2\u00eb\u00ec\7\64\2\2\u00ec\u00ed")
+        buf.write("\7!\2\2\u00ed\u00ee\5\60\31\2\u00ee\u00ef\7\"\2\2\u00ef")
+        buf.write("/\3\2\2\2\u00f0\u00f2\5\16\b\2\u00f1\u00f3\7\35\2\2\u00f2")
+        buf.write("\u00f1\3\2\2\2\u00f2\u00f3\3\2\2\2\u00f3\u00f5\3\2\2\2")
+        buf.write("\u00f4\u00f0\3\2\2\2\u00f5\u00f8\3\2\2\2\u00f6\u00f4\3")
+        buf.write("\2\2\2\u00f6\u00f7\3\2\2\2\u00f7\61\3\2\2\2\u00f8\u00f6")
+        buf.write("\3\2\2\2\u00f9\u00fc\5\64\33\2\u00fa\u00fc\7\23\2\2\u00fb")
+        buf.write("\u00f9\3\2\2\2\u00fb\u00fa\3\2\2\2\u00fc\63\3\2\2\2\u00fd")
+        buf.write("\u00fe\t\4\2\2\u00fe\65\3\2\2\2\u00ff\u0102\58\35\2\u0100")
+        buf.write("\u0102\5:\36\2\u0101\u00ff\3\2\2\2\u0101\u0100\3\2\2\2")
+        buf.write("\u0102\67\3\2\2\2\u0103\u0104\7\5\2\2\u0104\u0105\5H%")
+        buf.write("\2\u0105\u0106\7\6\2\2\u0106\u010e\5\24\13\2\u0107\u0108")
+        buf.write("\7\7\2\2\u0108\u0109\5H%\2\u0109\u010a\7\6\2\2\u010a\u010b")
+        buf.write("\5\24\13\2\u010b\u010d\3\2\2\2\u010c\u0107\3\2\2\2\u010d")
+        buf.write("\u0110\3\2\2\2\u010e\u010c\3\2\2\2\u010e\u010f\3\2\2\2")
+        buf.write("\u010f\u0113\3\2\2\2\u0110\u010e\3\2\2\2\u0111\u0112\7")
+        buf.write("\b\2\2\u0112\u0114\5\24\13\2\u0113\u0111\3\2\2\2\u0113")
+        buf.write("\u0114\3\2\2\2\u0114\u0115\3\2\2\2\u0115\u0116\7\t\2\2")
+        buf.write("\u01169\3\2\2\2\u0117\u011a\5<\37\2\u0118\u011a\5> \2")
+        buf.write("\u0119\u0117\3\2\2\2\u0119\u0118\3\2\2\2\u011a;\3\2\2")
+        buf.write("\2\u011b\u011c\7\f\2\2\u011c\u011d\5@!\2\u011d\u011e\7")
+        buf.write("\16\2\2\u011e\u011f\5\24\13\2\u011f\u0120\7\r\2\2\u0120")
+        buf.write("=\3\2\2\2\u0121\u0122\7\n\2\2\u0122\u0123\5H%\2\u0123")
+        buf.write("\u0124\7\16\2\2\u0124\u0125\5\24\13\2\u0125\u0126\7\13")
+        buf.write("\2\2\u0126?\3\2\2\2\u0127\u012a\5D#\2\u0128\u012a\5F$")
+        buf.write("\2\u0129\u0127\3\2\2\2\u0129\u0128\3\2\2\2\u012aA\3\2")
+        buf.write("\2\2\u012b\u012c\7\33\2\2\u012c\u012d\7\64\2\2\u012d\u012e")
+        buf.write("\7\34\2\2\u012eC\3\2\2\2\u012f\u0130\5\16\b\2\u0130\u0131")
+        buf.write("\7\22\2\2\u0131\u0132\5,\27\2\u0132E\3\2\2\2\u0133\u0134")
+        buf.write("\5\16\b\2\u0134\u0135\7\17\2\2\u0135\u0136\5,\27\2\u0136")
+        buf.write("\u0137\t\5\2\2\u0137\u0138\5,\27\2\u0138G\3\2\2\2\u0139")
+        buf.write("\u013f\5J&\2\u013a\u013b\5L\'\2\u013b\u013c\5J&\2\u013c")
+        buf.write("\u013e\3\2\2\2\u013d\u013a\3\2\2\2\u013e\u0141\3\2\2\2")
+        buf.write("\u013f\u013d\3\2\2\2\u013f\u0140\3\2\2\2\u0140I\3\2\2")
+        buf.write("\2\u0141\u013f\3\2\2\2\u0142\u0143\7!\2\2\u0143\u0144")
+        buf.write("\5H%\2\u0144\u0145\7\"\2\2\u0145\u014c\3\2\2\2\u0146\u014a")
+        buf.write("\5\64\33\2\u0147\u014a\5,\27\2\u0148\u014a\5N(\2\u0149")
+        buf.write("\u0146\3\2\2\2\u0149\u0147\3\2\2\2\u0149\u0148\3\2\2\2")
+        buf.write("\u014a\u014c\3\2\2\2\u014b\u0142\3\2\2\2\u014b\u0149\3")
+        buf.write("\2\2\2\u014cK\3\2\2\2\u014d\u014e\t\6\2\2\u014eM\3\2\2")
+        buf.write("\2\u014f\u0152\5\16\b\2\u0150\u0152\5$\23\2\u0151\u014f")
+        buf.write("\3\2\2\2\u0151\u0150\3\2\2\2\u0152\u0153\3\2\2\2\u0153")
+        buf.write("\u0156\5P)\2\u0154\u0157\5\16\b\2\u0155\u0157\5$\23\2")
+        buf.write("\u0156\u0154\3\2\2\2\u0156\u0155\3\2\2\2\u0157O\3\2\2")
+        buf.write("\2\u0158\u0159\t\7\2\2\u0159Q\3\2\2\2\'Sbkqw~\u0084\u0089")
+        buf.write("\u008c\u0094\u009b\u009d\u00a9\u00ae\u00b4\u00b8\u00bd")
+        buf.write("\u00c1\u00ca\u00cf\u00d3\u00d8\u00e2\u00e9\u00f2\u00f6")
+        buf.write("\u00fb\u0101\u010e\u0113\u0119\u0129\u013f\u0149\u014b")
+        buf.write("\u0151\u0156")
         return buf.getvalue()
 
 
@@ -186,8 +185,7 @@ class MMADLParser ( Parser ):
                      "'$'", "'['", "']'", "','", "':'", "';'", "'<-'", "'('", 
                      "')'", "'and'", "'or'", "'&'", "'|'", "'xor'", "'='", 
                      "'!='", "'>'", "'<'", "'>='", "'<='", "'\\pointer'", 
-                     "'<\\cb>'", "'<\\ce>'", "<INVALID>", "<INVALID>", "<INVALID>", 
-                     "<INVALID>", "<INVALID>", "'\\n'" ]
+                     "'<\\cb>'", "'<\\ce>'" ]
 
     symbolicNames = [ "<INVALID>", "INPUT", "OUTPUT", "IF", "THEN", "ELSEIF", 
                       "ELSE", "ENDIF", "WHILE", "ENDWHILE", "FOR", "ENDFOR", 
@@ -198,7 +196,7 @@ class MMADLParser ( Parser ):
                       "AND", "OR", "BYTEAND", "BYTEOR", "XOR", "EQ", "NEQ", 
                       "GT", "LE", "GEQ", "LEQ", "POINTER", "OPENCOMMENT", 
                       "CLOSECOMMENT", "WS", "MATH_BINARY_OPERAIONS", "NUMBER", 
-                      "STRING", "CUSTOM_STRING", "NEW_LINE" ]
+                      "STRING", "CUSTOM_STRING" ]
 
     RULE_mmadl = 0
     RULE_header = 1
@@ -304,7 +302,6 @@ class MMADLParser ( Parser ):
     NUMBER=49
     STRING=50
     CUSTOM_STRING=51
-    NEW_LINE=52
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -1031,9 +1028,6 @@ class MMADLParser ( Parser ):
         def CLOSECOMMENT(self):
             return self.getToken(MMADLParser.CLOSECOMMENT, 0)
 
-        def NEW_LINE(self):
-            return self.getToken(MMADLParser.NEW_LINE, 0)
-
         def getRuleIndex(self):
             return MMADLParser.RULE_comment
 
@@ -1058,7 +1052,6 @@ class MMADLParser ( Parser ):
 
         localctx = MMADLParser.CommentContext(self, self._ctx, self.state)
         self.enterRule(localctx, 20, self.RULE_comment)
-        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 158
@@ -1067,14 +1060,6 @@ class MMADLParser ( Parser ):
             self.match(MMADLParser.CUSTOM_STRING)
             self.state = 160
             self.match(MMADLParser.CLOSECOMMENT)
-            self.state = 162
-            self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            if _la==MMADLParser.NEW_LINE:
-                self.state = 161
-                self.match(MMADLParser.NEW_LINE)
-
-
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1130,17 +1115,17 @@ class MMADLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 164
+            self.state = 162
             self.operator()
-            self.state = 169
+            self.state = 167
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==MMADLParser.SEMICOLON:
-                self.state = 165
+                self.state = 163
                 self.match(MMADLParser.SEMICOLON)
-                self.state = 166
+                self.state = 164
                 self.operator()
-                self.state = 171
+                self.state = 169
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1192,17 +1177,17 @@ class MMADLParser ( Parser ):
         localctx = MMADLParser.OperatorContext(self, self._ctx, self.state)
         self.enterRule(localctx, 24, self.RULE_operator)
         try:
-            self.state = 174
+            self.state = 172
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [MMADLParser.NIL, MMADLParser.FALSE, MMADLParser.TRUE, MMADLParser.RETURN, MMADLParser.YIELD, MMADLParser.CONTINUE, MMADLParser.BREAK, MMADLParser.MATH_EXPRESSION_SIGN, MMADLParser.NUMBER, MMADLParser.STRING, MMADLParser.CUSTOM_STRING]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 172
+                self.state = 170
                 self.simple_operator()
                 pass
             elif token in [MMADLParser.IF, MMADLParser.WHILE, MMADLParser.FOR]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 173
+                self.state = 171
                 self.composite_operator()
                 pass
             else:
@@ -1264,30 +1249,30 @@ class MMADLParser ( Parser ):
         localctx = MMADLParser.Simple_operatorContext(self, self._ctx, self.state)
         self.enterRule(localctx, 26, self.RULE_simple_operator)
         try:
-            self.state = 180
+            self.state = 178
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,15,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,14,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 176
+                self.state = 174
                 self.assignment_operator()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 177
+                self.state = 175
                 self.control_operator()
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 178
+                self.state = 176
                 self.var_definition_operator()
                 pass
 
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 179
+                self.state = 177
                 self.expression()
                 pass
 
@@ -1352,28 +1337,28 @@ class MMADLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 182
+            self.state = 180
             self.param_name()
-            self.state = 184
+            self.state = 182
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MMADLParser.LE) | (1 << MMADLParser.POINTER) | (1 << MMADLParser.STRING))) != 0):
-                self.state = 183
+                self.state = 181
                 self.param_type()
 
 
-            self.state = 186
+            self.state = 184
             self.match(MMADLParser.ASSIGNMENT)
-            self.state = 189
+            self.state = 187
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,17,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,16,self._ctx)
             if la_ == 1:
-                self.state = 187
+                self.state = 185
                 self.param_name()
                 pass
 
             elif la_ == 2:
-                self.state = 188
+                self.state = 186
                 self.expression()
                 pass
 
@@ -1426,17 +1411,17 @@ class MMADLParser ( Parser ):
         localctx = MMADLParser.Control_operatorContext(self, self._ctx, self.state)
         self.enterRule(localctx, 30, self.RULE_control_operator)
         try:
-            self.state = 193
+            self.state = 191
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [MMADLParser.RETURN, MMADLParser.YIELD]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 191
+                self.state = 189
                 self.exit_operator()
                 pass
             elif token in [MMADLParser.CONTINUE, MMADLParser.BREAK]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 192
+                self.state = 190
                 self.loop_control_operator()
                 pass
             else:
@@ -1494,11 +1479,11 @@ class MMADLParser ( Parser ):
         self.enterRule(localctx, 32, self.RULE_var_definition_operator)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 195
+            self.state = 193
             self.param_name()
-            self.state = 196
+            self.state = 194
             self.match(MMADLParser.COLON)
-            self.state = 197
+            self.state = 195
             self.param_type()
         except RecognitionException as re:
             localctx.exception = re
@@ -1552,22 +1537,22 @@ class MMADLParser ( Parser ):
         localctx = MMADLParser.ExpressionContext(self, self._ctx, self.state)
         self.enterRule(localctx, 34, self.RULE_expression)
         try:
-            self.state = 202
+            self.state = 200
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [MMADLParser.MATH_EXPRESSION_SIGN, MMADLParser.NUMBER, MMADLParser.CUSTOM_STRING]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 199
+                self.state = 197
                 self.math_expression()
                 pass
             elif token in [MMADLParser.NIL, MMADLParser.FALSE, MMADLParser.TRUE]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 200
+                self.state = 198
                 self.known_lexem()
                 pass
             elif token in [MMADLParser.STRING]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 201
+                self.state = 199
                 self.function_call()
                 pass
             else:
@@ -1634,31 +1619,31 @@ class MMADLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 204
+            self.state = 202
             _la = self._input.LA(1)
             if not(_la==MMADLParser.RETURN or _la==MMADLParser.YIELD):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
                 self.consume()
-            self.state = 211
+            self.state = 209
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,21,self._ctx)
+            _alt = self._interp.adaptivePredict(self._input,20,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1:
-                    self.state = 205
+                    self.state = 203
                     self.exit_value()
-                    self.state = 207
+                    self.state = 205
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
                     if _la==MMADLParser.COMMA:
-                        self.state = 206
+                        self.state = 204
                         self.match(MMADLParser.COMMA)
 
              
-                self.state = 213
+                self.state = 211
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,21,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input,20,self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -1708,18 +1693,18 @@ class MMADLParser ( Parser ):
         localctx = MMADLParser.Exit_valueContext(self, self._ctx, self.state)
         self.enterRule(localctx, 38, self.RULE_exit_value)
         try:
-            self.state = 216
+            self.state = 214
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,22,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,21,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 214
+                self.state = 212
                 self.expression()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 215
+                self.state = 213
                 self.condition()
                 pass
 
@@ -1772,7 +1757,7 @@ class MMADLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 218
+            self.state = 216
             _la = self._input.LA(1)
             if not(_la==MMADLParser.CONTINUE or _la==MMADLParser.BREAK):
                 self._errHandler.recoverInline(self)
@@ -1845,38 +1830,38 @@ class MMADLParser ( Parser ):
         self.enterRule(localctx, 42, self.RULE_math_expression)
         self._la = 0 # Token type
         try:
-            self.state = 233
+            self.state = 231
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [MMADLParser.MATH_EXPRESSION_SIGN]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 220
+                self.state = 218
                 self.match(MMADLParser.MATH_EXPRESSION_SIGN)
-                self.state = 221
+                self.state = 219
                 self.param_name()
-                self.state = 226
+                self.state = 224
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 while _la==MMADLParser.MATH_BINARY_OPERAIONS:
-                    self.state = 222
+                    self.state = 220
                     self.match(MMADLParser.MATH_BINARY_OPERAIONS)
-                    self.state = 223
+                    self.state = 221
                     self.param_name()
-                    self.state = 228
+                    self.state = 226
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
 
-                self.state = 229
+                self.state = 227
                 self.match(MMADLParser.MATH_EXPRESSION_SIGN)
                 pass
             elif token in [MMADLParser.CUSTOM_STRING]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 231
+                self.state = 229
                 self.match(MMADLParser.CUSTOM_STRING)
                 pass
             elif token in [MMADLParser.NUMBER]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 232
+                self.state = 230
                 self.match(MMADLParser.NUMBER)
                 pass
             else:
@@ -1936,13 +1921,13 @@ class MMADLParser ( Parser ):
         self.enterRule(localctx, 44, self.RULE_function_call)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 235
+            self.state = 233
             self.match(MMADLParser.STRING)
-            self.state = 236
+            self.state = 234
             self.match(MMADLParser.OPENPARENTHESIS)
-            self.state = 237
+            self.state = 235
             self.variables_list()
-            self.state = 238
+            self.state = 236
             self.match(MMADLParser.CLOSEPARENTHESIS)
         except RecognitionException as re:
             localctx.exception = re
@@ -1999,21 +1984,21 @@ class MMADLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 246
+            self.state = 244
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==MMADLParser.STRING:
-                self.state = 240
+                self.state = 238
                 self.param_name()
-                self.state = 242
+                self.state = 240
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if _la==MMADLParser.COMMA:
-                    self.state = 241
+                    self.state = 239
                     self.match(MMADLParser.COMMA)
 
 
-                self.state = 248
+                self.state = 246
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -2064,17 +2049,17 @@ class MMADLParser ( Parser ):
         localctx = MMADLParser.Known_lexemContext(self, self._ctx, self.state)
         self.enterRule(localctx, 48, self.RULE_known_lexem)
         try:
-            self.state = 251
+            self.state = 249
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [MMADLParser.FALSE, MMADLParser.TRUE]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 249
+                self.state = 247
                 self.bool_value()
                 pass
             elif token in [MMADLParser.NIL]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 250
+                self.state = 248
                 self.match(MMADLParser.NIL)
                 pass
             else:
@@ -2128,7 +2113,7 @@ class MMADLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 253
+            self.state = 251
             _la = self._input.LA(1)
             if not(_la==MMADLParser.FALSE or _la==MMADLParser.TRUE):
                 self._errHandler.recoverInline(self)
@@ -2183,17 +2168,17 @@ class MMADLParser ( Parser ):
         localctx = MMADLParser.Composite_operatorContext(self, self._ctx, self.state)
         self.enterRule(localctx, 52, self.RULE_composite_operator)
         try:
-            self.state = 257
+            self.state = 255
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [MMADLParser.IF]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 255
+                self.state = 253
                 self.if_operator()
                 pass
             elif token in [MMADLParser.WHILE, MMADLParser.FOR]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 256
+                self.state = 254
                 self.loop_operator()
                 pass
             else:
@@ -2276,41 +2261,41 @@ class MMADLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 259
+            self.state = 257
             self.match(MMADLParser.IF)
-            self.state = 260
+            self.state = 258
             self.condition()
-            self.state = 261
+            self.state = 259
             self.match(MMADLParser.THEN)
-            self.state = 262
+            self.state = 260
             self.body()
-            self.state = 270
+            self.state = 268
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==MMADLParser.ELSEIF:
-                self.state = 263
+                self.state = 261
                 self.match(MMADLParser.ELSEIF)
-                self.state = 264
+                self.state = 262
                 self.condition()
-                self.state = 265
+                self.state = 263
                 self.match(MMADLParser.THEN)
-                self.state = 266
+                self.state = 264
                 self.body()
-                self.state = 272
+                self.state = 270
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
-            self.state = 275
+            self.state = 273
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==MMADLParser.ELSE:
-                self.state = 273
+                self.state = 271
                 self.match(MMADLParser.ELSE)
-                self.state = 274
+                self.state = 272
                 self.body()
 
 
-            self.state = 277
+            self.state = 275
             self.match(MMADLParser.ENDIF)
         except RecognitionException as re:
             localctx.exception = re
@@ -2360,17 +2345,17 @@ class MMADLParser ( Parser ):
         localctx = MMADLParser.Loop_operatorContext(self, self._ctx, self.state)
         self.enterRule(localctx, 56, self.RULE_loop_operator)
         try:
-            self.state = 281
+            self.state = 279
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [MMADLParser.FOR]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 279
+                self.state = 277
                 self.for_operator()
                 pass
             elif token in [MMADLParser.WHILE]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 280
+                self.state = 278
                 self.while_operator()
                 pass
             else:
@@ -2434,15 +2419,15 @@ class MMADLParser ( Parser ):
         self.enterRule(localctx, 58, self.RULE_for_operator)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 283
+            self.state = 281
             self.match(MMADLParser.FOR)
-            self.state = 284
+            self.state = 282
             self.for_range()
-            self.state = 285
+            self.state = 283
             self.match(MMADLParser.DO)
-            self.state = 286
+            self.state = 284
             self.body()
-            self.state = 287
+            self.state = 285
             self.match(MMADLParser.ENDFOR)
         except RecognitionException as re:
             localctx.exception = re
@@ -2502,15 +2487,15 @@ class MMADLParser ( Parser ):
         self.enterRule(localctx, 60, self.RULE_while_operator)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 289
+            self.state = 287
             self.match(MMADLParser.WHILE)
-            self.state = 290
+            self.state = 288
             self.condition()
-            self.state = 291
+            self.state = 289
             self.match(MMADLParser.DO)
-            self.state = 292
+            self.state = 290
             self.body()
-            self.state = 293
+            self.state = 291
             self.match(MMADLParser.ENDWHILE)
         except RecognitionException as re:
             localctx.exception = re
@@ -2560,18 +2545,18 @@ class MMADLParser ( Parser ):
         localctx = MMADLParser.For_rangeContext(self, self._ctx, self.state)
         self.enterRule(localctx, 62, self.RULE_for_range)
         try:
-            self.state = 297
+            self.state = 295
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,32,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,31,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 295
+                self.state = 293
                 self.include()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 296
+                self.state = 294
                 self.iteration()
                 pass
 
@@ -2626,11 +2611,11 @@ class MMADLParser ( Parser ):
         self.enterRule(localctx, 64, self.RULE_index)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 299
+            self.state = 297
             self.match(MMADLParser.OPEN_BRACKET)
-            self.state = 300
+            self.state = 298
             self.match(MMADLParser.STRING)
-            self.state = 301
+            self.state = 299
             self.match(MMADLParser.CLOSE_BRACKET)
         except RecognitionException as re:
             localctx.exception = re
@@ -2684,11 +2669,11 @@ class MMADLParser ( Parser ):
         self.enterRule(localctx, 66, self.RULE_include)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 303
+            self.state = 301
             self.param_name()
-            self.state = 304
+            self.state = 302
             self.match(MMADLParser.IN)
-            self.state = 305
+            self.state = 303
             self.math_expression()
         except RecognitionException as re:
             localctx.exception = re
@@ -2752,20 +2737,20 @@ class MMADLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 307
+            self.state = 305
             self.param_name()
-            self.state = 308
+            self.state = 306
             self.match(MMADLParser.FROM)
-            self.state = 309
+            self.state = 307
             self.math_expression()
-            self.state = 310
+            self.state = 308
             _la = self._input.LA(1)
             if not(_la==MMADLParser.TO or _la==MMADLParser.DOWNTO):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
                 self.consume()
-            self.state = 311
+            self.state = 309
             self.math_expression()
         except RecognitionException as re:
             localctx.exception = re
@@ -2823,17 +2808,17 @@ class MMADLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 313
+            self.state = 311
             self.simple_condition()
-            self.state = 319
+            self.state = 317
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MMADLParser.AND) | (1 << MMADLParser.OR) | (1 << MMADLParser.BYTEAND) | (1 << MMADLParser.BYTEOR) | (1 << MMADLParser.XOR))) != 0):
-                self.state = 314
+                self.state = 312
                 self.logic_connective()
-                self.state = 315
+                self.state = 313
                 self.simple_condition()
-                self.state = 321
+                self.state = 319
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -2899,35 +2884,35 @@ class MMADLParser ( Parser ):
         localctx = MMADLParser.Simple_conditionContext(self, self._ctx, self.state)
         self.enterRule(localctx, 72, self.RULE_simple_condition)
         try:
-            self.state = 331
+            self.state = 329
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [MMADLParser.OPENPARENTHESIS]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 322
+                self.state = 320
                 self.match(MMADLParser.OPENPARENTHESIS)
-                self.state = 323
+                self.state = 321
                 self.condition()
-                self.state = 324
+                self.state = 322
                 self.match(MMADLParser.CLOSEPARENTHESIS)
                 pass
             elif token in [MMADLParser.NIL, MMADLParser.FALSE, MMADLParser.TRUE, MMADLParser.MATH_EXPRESSION_SIGN, MMADLParser.NUMBER, MMADLParser.STRING, MMADLParser.CUSTOM_STRING]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 329
+                self.state = 327
                 self._errHandler.sync(self)
-                la_ = self._interp.adaptivePredict(self._input,34,self._ctx)
+                la_ = self._interp.adaptivePredict(self._input,33,self._ctx)
                 if la_ == 1:
-                    self.state = 326
+                    self.state = 324
                     self.bool_value()
                     pass
 
                 elif la_ == 2:
-                    self.state = 327
+                    self.state = 325
                     self.math_expression()
                     pass
 
                 elif la_ == 3:
-                    self.state = 328
+                    self.state = 326
                     self.order_relation()
                     pass
 
@@ -2993,7 +2978,7 @@ class MMADLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 333
+            self.state = 331
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MMADLParser.AND) | (1 << MMADLParser.OR) | (1 << MMADLParser.BYTEAND) | (1 << MMADLParser.BYTEOR) | (1 << MMADLParser.XOR))) != 0)):
                 self._errHandler.recoverInline(self)
@@ -3059,32 +3044,32 @@ class MMADLParser ( Parser ):
         self.enterRule(localctx, 76, self.RULE_order_relation)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 337
+            self.state = 335
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,36,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,35,self._ctx)
             if la_ == 1:
-                self.state = 335
+                self.state = 333
                 self.param_name()
                 pass
 
             elif la_ == 2:
-                self.state = 336
+                self.state = 334
                 self.expression()
                 pass
 
 
-            self.state = 339
+            self.state = 337
             self.binary_relation()
-            self.state = 342
+            self.state = 340
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,37,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,36,self._ctx)
             if la_ == 1:
-                self.state = 340
+                self.state = 338
                 self.param_name()
                 pass
 
             elif la_ == 2:
-                self.state = 341
+                self.state = 339
                 self.expression()
                 pass
 
@@ -3152,7 +3137,7 @@ class MMADLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 344
+            self.state = 342
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << MMADLParser.IN) | (1 << MMADLParser.EQ) | (1 << MMADLParser.NEQ) | (1 << MMADLParser.GT) | (1 << MMADLParser.LE) | (1 << MMADLParser.GEQ) | (1 << MMADLParser.LEQ))) != 0)):
                 self._errHandler.recoverInline(self)

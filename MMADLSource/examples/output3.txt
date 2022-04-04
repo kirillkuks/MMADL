@@ -6,16 +6,17 @@
 </head>
 <div><span  style="color: blue;">Вход: </span>a : &#x2191 elem_t , b : &#x2191 elem_t </div>
 <div style="padding: 0 0px"><span  style="color: blue;">Выход: </span>&#x2191 bool </div>
-<div style="padding: 0 0px">pa <- a ; pb <- b </div>
+<div style="padding: 0 0px">pa &#8592 a ; pb &#8592 b </div>
 <div style="padding: 0 0px"><span  style="color: blue;">while </span>pa != nil & pb != nil <span  style="color: blue;">do </span></div>
 <div style="padding: 0 10px"><span  style="color: blue;">if </span>pa.i < pb.i <span  style="color: blue;">then </span></div>
 <div style="padding: 0 20px"><span  style="color: blue;">return </span></div>
 <div style="padding: 0 10px"><span  style="color: blue;">elseif </span>pa.i > pb.i <span  style="color: blue;">then </span></div>
-<div style="padding: 0 20px">pb <- pb.n </div>
+<div style="padding: 0 20px">pb &#8592 pb.n </div>
 <div style="padding: 0 10px"><span  style="color: blue;">else </span></div>
-<div style="padding: 0 20px">pb <- pb.n </div>
-<div style="padding: 0 10px"></div>
-<div style="padding: 0 10px"><span  style="color: blue;">end while </span></div>
+<div style="padding: 0 20px">pb &#8592 pb.n </div>
+<div style="padding: 0 10px"><span  style="color: blue;">end if </span></div>
+</div>
+<div style="padding: 0 0px"><span  style="color: blue;">end while </span></div>
 <div style="padding: 0 0px"><span style="color: green;">$Простотекст$ </span></div>
 <div style="padding: 0 0px"><span  style="color: blue;">return </span></div>
 <div style="padding: 0 0px"></div></html>

@@ -47,6 +47,8 @@ class MMADLTranslatorHTMLVisitor(MMADLTranslatorVisitor):
 
     def add_new_line(self): self.code += '</div>\n<div style="padding: 0 {0}px">'.format(self.intent * 10)
 
+    def delete_last_line(self): self.code = self.code[: self.code.rfind('<div')]
+
     def visitMMADL(self, ctx: MMADLParser.MmadlContext):
         self.visitChildren(ctx)
 
@@ -66,7 +68,6 @@ class MMADLTranslatorHTMLVisitor(MMADLTranslatorVisitor):
             self.visit(ctx.param_name(i + 1))
             self.add_code_lexem(ctx.COLON(i + 1))
             self.visit(ctx.param_type(i + 1))
-
         self.add_new_line()
 
     def visitEnsure(self, ctx: MMADLParser.EnsureContext): self.add_key_word(ctx.OUTPUT())
@@ -111,8 +112,6 @@ class MMADLTranslatorHTMLVisitor(MMADLTranslatorVisitor):
 
     def visitComment(self, ctx: MMADLParser.CommentContext):
         self.add_comment(ctx.CUSTOM_STRING())
-        if ctx.NEW_LINE() is not None:
-            self.add_new_line()
 
     def visitOperators_list(self, ctx: MMADLParser.Operators_listContext):
         self.visit(ctx.operator(0))
@@ -131,7 +130,7 @@ class MMADLTranslatorHTMLVisitor(MMADLTranslatorVisitor):
         self.visit(ctx.param_name(0))
         if ctx.param_type() is not None:
             self.visit(ctx.param_type())
-        self.add_code_lexem(ctx.ASSIGNMENT())
+        self.add_code_lexem("&#8592")
         if ctx.expression() is not None:
             self.visit(ctx.expression())
         else:
@@ -166,16 +165,16 @@ class MMADLTranslatorHTMLVisitor(MMADLTranslatorVisitor):
             self.add_code_lexem(ctx.BREAK(0))
 
     def visitMath_expression(self, ctx: MMADLParser.Math_expressionContext):
-        if ctx.MATH_EXPRESSION_SIGN() is not None:
+        if ctx.MATH_EXPRESSION_SIGN() is not None and len(ctx.MATH_EXPRESSION_SIGN()) > 0:
             self.visit(ctx.param_name(0))
-            if ctx.MATH_BINARY_OPERATIONS() is not None:
-                for i in range(len(ctx.MATH_BINARY_OPERATIONS())):
-                    self.add_code_lexem(ctx.MATH_BINARY_OPERATIONS(i))
+            if ctx.MATH_BINARY_OPERAIONS() is not None and len(ctx.MATH_BINARY_OPERAIONS()) > 0:
+                for i in range(len(ctx.MATH_BINARY_OPERAIONS())):
+                    self.add_code_lexem(ctx.MATH_BINARY_OPERAIONS(i))
                     self.visit(ctx.param_name(i + 1))
         elif ctx.CUSTOM_STRING() is not None:
-            self.add_code_lexem(ctx.CUSTOM_STRING(0))
+            self.add_code_lexem(ctx.CUSTOM_STRING())
         else:
-            self.add_code_lexem(ctx.NUMBER(0))
+            self.add_code_lexem(ctx.NUMBER())
 
     def visitFunction_call(self, ctx: MMADLParser.Function_callContext):
         self.add_code_lexem(ctx.STRING())
@@ -229,6 +228,7 @@ class MMADLTranslatorHTMLVisitor(MMADLTranslatorVisitor):
             self.add_new_line()
             self.intent -= 1
             self.visit(ctx.body(count))
+        self.add_key_word(ctx.ENDIF())
 
     def visitLoop_operator(self, ctx: MMADLParser.Loop_operatorContext): self.visitChildren(ctx)
 
@@ -240,6 +240,8 @@ class MMADLTranslatorHTMLVisitor(MMADLTranslatorVisitor):
         self.add_new_line()
         self.visit(ctx.body())
         self.intent -= 1
+        self.delete_last_line()
+        self.add_new_line()
         self.add_key_word(ctx.ENDFOR())
 
     def visitWhile_operator(self, ctx: MMADLParser.While_operatorContext):
@@ -250,6 +252,8 @@ class MMADLTranslatorHTMLVisitor(MMADLTranslatorVisitor):
         self.add_new_line()
         self.visit(ctx.body())
         self.intent -= 1
+        self.delete_last_line()
+        self.add_new_line()
         self.add_key_word(ctx.ENDWHILE())
 
     def visitFor_range(self, ctx: MMADLParser.For_rangeContext): self.visitChildren(ctx)
@@ -261,7 +265,7 @@ class MMADLTranslatorHTMLVisitor(MMADLTranslatorVisitor):
 
     def visitInclude(self, ctx: MMADLParser.IncludeContext):
         self.visit(ctx.param_name())
-        self.add_key_word(ctx.IN())
+        self.add_code_lexem("&#8712")
         self.visit(ctx.math_expression())
 
     def visitIteration(self, ctx: MMADLParser.IterationContext):
