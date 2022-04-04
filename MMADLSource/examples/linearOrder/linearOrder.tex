@@ -1,0 +1,39 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{shorttoc}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{float}
+
+\definecolor{linkcolor}{HTML}{000000}
+\definecolor{urlcolor}{HTML}{0085FF}
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+
+\begin{document}
+\noindent
+ $ \textbf{\textcolor{blue}{Вход:}} \  \textcolor{black}{U} \  : \  \textbf{\textcolor{blue}{set\_t}} \  \textsl{\textcolor{green}{/*КонечноеЧастичноУпорядоченноеМножество*/}} \  $ 
+\newline
+ $ \null \textbf{\textcolor{blue}{Выход:}} \  \textbf{\textcolor{blue}{set\_t}} \  \textsl{\textcolor{green}{/*ЛинейноУпорядоченноеМножество*/}} \  $ 
+\newline
+ $ \null \textbf{\textcolor{blue}{while}} \   U \neq \emptyset  \  \textbf{\textcolor{blue}{do}} \  $ 
+\newline
+ $ \null \quad \textcolor{black}{m} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{min} \  \textcolor{black}{U} \  $ 
+\newline
+ $ \null \quad \textbf{\textcolor{blue}{yield}} \  \textcolor{black}{m} \  $ 
+\newline
+ $ \null \quad \textcolor{black}{U} \  \textcolor{black}{\leftarrow} \   U - m  \  $ 
+\newline
+ $ \null \textbf{\textcolor{blue}{end while}} \  $ 
+\newline
+ $ \null $ 
+\end{document}

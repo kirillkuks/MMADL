@@ -1,0 +1,55 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{shorttoc}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{float}
+
+\definecolor{linkcolor}{HTML}{000000}
+\definecolor{urlcolor}{HTML}{0085FF}
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+
+\begin{document}
+\noindent
+ $ \textbf{\textcolor{blue}{Вход:}} \  \textcolor{black}{a} \  \textcolor{black}{:} \  \uparrow \  \textbf{\textcolor{blue}{elem\_t}} \  \textcolor{black}{,} \  \textcolor{black}{b} \  \textcolor{black}{:} \  \uparrow \  \textbf{\textcolor{blue}{elem\_t}} \  $ 
+\newline
+ $ \null \textbf{\textcolor{blue}{Выход:}} \  \textbf{\textcolor{blue}{bool}} \   $ 
+\newline
+ $ \null \textcolor{black}{pa} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{a} \  \textcolor{black}{;} \  \textcolor{black}{pb} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{b} \  $ 
+\newline
+ $ \null \textbf{\textcolor{blue}{while}} \  \textcolor{black}{pa} \  \textcolor{black}{\neq} \  \textbf{\textcolor{blue}{nil}} \  \textbf{\textcolor{blue}{and}} \  \textcolor{black}{pb} \  \textcolor{black}{\neq} \  \textbf{\textcolor{blue}{nil}} \  \textbf{\textcolor{blue}{do}} \  $ 
+\newline
+ $ \null \quad \textbf{\textcolor{blue}{if}} \  \textcolor{black}{pa.i} \  \textcolor{black}{<} \  \textcolor{black}{pb.i} \  \textbf{\textcolor{blue}{then}} \  $ 
+\newline
+ $ \null \quad \quad \textbf{\textcolor{blue}{return}} \  \textbf{\textcolor{blue}{False}} \  $ 
+\newline
+ $ \null \quad \textbf{\textcolor{blue}{elseif}} \  \textcolor{black}{pa.i} \  \textcolor{black}{>} \  \textcolor{black}{pb.i} \  \textbf{\textcolor{blue}{then}} \  $ 
+\newline
+ $ \null \quad \quad \textcolor{black}{pb} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{pb.n} \  $ 
+\newline
+ $ \null \quad \textbf{\textcolor{blue}{else}} \  $ 
+\newline
+ $ \null \quad \quad \textcolor{black}{pa} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{pa.n} \  $ 
+\newline
+ $ \null \quad \quad \textcolor{black}{pb} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{pb.n} \  $ 
+\newline
+ $ \null \quad \textbf{\textcolor{blue}{end if}} \  $ 
+\newline
+ $ \null \textbf{\textcolor{blue}{end while}} \  $ 
+\newline
+ $ \null \textsl{\textcolor{green}{/*Комментарий*/}} \  $ 
+\newline
+ $ \null \textbf{\textcolor{blue}{return}} \  \textcolor{black}{pa} \  \textcolor{black}{=} \  \textbf{\textcolor{blue}{nil}} \  $ 
+\newline
+ $ \null $ 
+\end{document}

@@ -80,7 +80,6 @@ class MMADLRetranslatorVisitor(MMADLTranslatorVisitor):
 
     # Visit a parse tree produced by MMADLParser#index.
     def visitIndex(self, ctx:MMADLParser.IndexContext):
-        print('INDEX')
         self.addToken(ctx.OPENBRACKET())
         self.visit(ctx.indexed_expression())
         self.addToken(ctx.CLOSEBRACKET())

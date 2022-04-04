@@ -13,14 +13,14 @@ require
     : INPUT
     ;
 input_params
-    : (param_name COLON param_type)? (COMMA param_name COLON param_type)*
+    : (param_name colon param_type comment?)? (comma param_name colon param_type comment?)*
     ;
 
 ensure
     : OUTPUT
     ;
 output_params
-    : param_type? (COMMA param_type)*
+    : param_type? comment? (comma param_type comment?)*
     ;
 
 param_name
@@ -225,6 +225,13 @@ binary_relation
     | LE
     | GEQ
     | LEQ
+    ;
+
+colon
+    : COLON
+    ;
+comma
+    : COMMA
     ;
 
 INPUT

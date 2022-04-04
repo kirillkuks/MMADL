@@ -467,5 +467,23 @@ class MMADLListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MMADLParser#colon.
+    def enterColon(self, ctx:MMADLParser.ColonContext):
+        pass
+
+    # Exit a parse tree produced by MMADLParser#colon.
+    def exitColon(self, ctx:MMADLParser.ColonContext):
+        pass
+
+
+    # Enter a parse tree produced by MMADLParser#comma.
+    def enterComma(self, ctx:MMADLParser.CommaContext):
+        pass
+
+    # Exit a parse tree produced by MMADLParser#comma.
+    def exitComma(self, ctx:MMADLParser.CommaContext):
+        pass
+
+
 
 del MMADLParser

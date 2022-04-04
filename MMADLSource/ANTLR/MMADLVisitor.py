@@ -264,5 +264,15 @@ class MMADLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MMADLParser#colon.
+    def visitColon(self, ctx:MMADLParser.ColonContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MMADLParser#comma.
+    def visitComma(self, ctx:MMADLParser.CommaContext):
+        return self.visitChildren(ctx)
+
+
 
 del MMADLParser

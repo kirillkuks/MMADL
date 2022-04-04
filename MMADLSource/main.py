@@ -3,6 +3,8 @@ import codecs
 
 from antlr4 import *
 
+from ParserParams import ParserParams
+
 from MMADLPreParser import MMADLPreParser
 from MMADLRetranslator import MMADLRetranslator
 from MMADLTranslator import MMADLTranslator
@@ -16,6 +18,7 @@ def parse_argv() -> argparse.Namespace:
     args_parser.add_argument('-t', '--type', help='program type')
     args_parser.add_argument('-p', '--platform', help='target platfoem')
     args_parser.add_argument('-s', '--style', help='output file pseudocode format')
+    args_parser.add_argument('-o', '--output', help='output file')
 
     args = args_parser.parse_args()
 
@@ -24,8 +27,9 @@ def parse_argv() -> argparse.Namespace:
 
 def main(parser_args: argparse.Namespace):
     assert parser_args is not None
+    params = ParserParams.create(parser_args)
 
-    parser = MMADLPreParser.create(parser_args)
+    parser = MMADLPreParser.create(params)
 
     assert parser is not None
 
@@ -34,11 +38,13 @@ def main(parser_args: argparse.Namespace):
     with codecs.open('temp.mmadlt', 'w', 'utf_8') as f:
         f.write(temp_code)
 
-    retranslator = MMADLTranslatorTex('temp.mmadlt')
-    # retranslator = MMADLRetranslator('temp.mmadlt')
+    translator = MMADLTranslatorTex('temp.mmadlt', params)
+    # retranslator = MMADLRetranslator('temp.mmadlt', params)
     # retranslator = MMADLRetranslator('examples\\test.txt')
-    code = retranslator.translate()
+    code = translator.translate()
     print(code)
+
+    translator.save(generate_pdf=True)
 
     with codecs.open('examples\\output.txt', 'w', 'utf_8') as f:
         f.write(code)

@@ -3,6 +3,8 @@ from antlr4 import *
 import sys
 sys.path.append('..')
 
+from ParserParams import ParserParams
+
 from ANTLR.MMADLParser import MMADLParser
 from MMADLTranslatorVisitor import MMADLTranslatorVisitor
 
@@ -20,17 +22,17 @@ class TexCodePrinter:
 
     def printCodeText(self, token: TerminalNode) -> str:
         if token is None:
-            return ''
+            return None
         return '\\textcolor{' + self.code_color + '}{' + self._to_tex_string(token.__str__()) + '} \ '
 
     def printKeyWord(self, token: TerminalNode) -> str:
         if token is None:
-            return ''
+            return None
         return '\\textbf{\\textcolor{' + self.key_word_color + '}{' + self._to_tex_string(token.__str__()) + '}} \ '
 
     def printComment(self, token: TerminalNode) -> str:
         if token is None:
-            return ''
+            return None
         return '\\textsl{\\textcolor{' + self.comment_color + '}{' + self._to_tex_string(token.__str__()) + '}} \ '
 
     def _to_tex_string(self, s: str) -> str:
@@ -38,8 +40,8 @@ class TexCodePrinter:
 
 
 class MMADLTranslatorTexVisitor(MMADLTranslatorVisitor):
-    def __init__(self) -> None:
-        super().__init__()
+    def __init__(self, params: ParserParams) -> None:
+        super().__init__(params)
 
         self.code_level = -1
         self.tex_level = 1
@@ -48,25 +50,54 @@ class MMADLTranslatorTexVisitor(MMADLTranslatorVisitor):
 
         self.code_printer = TexCodePrinter()
 
+        self.code_list = []
+
         self.table = TexTable()
 
     def addToken(self, token: str) -> None:
         if token is not None:
+            self.newline = False
+
             self.code += token.__str__()
             self.code += ' '
+            self.code_list.append(token.__str__() + ' ')
 
     def addNewline(self) -> None:
-        self.code += '$ \n\\newline\n $ \\null ' + (self.code_level if self.code_level > 0 else 0) * '\\quad '
+        if self.newline:
+            del self.code_list[-1]
+
+        if self.params.type == ParserParams.TYPE.EXPRESSION:
+            self.code += ' \ '
+            self.code_list.append(' \ ')
+        else:
+            self.code += '$ \n\\newline\n $ \\null ' + (self.code_level if self.code_level > 0 else 0) * '\\quad '
+            self.code_list.append('$ \n\\newline\n $ \\null ' + (self.code_level if self.code_level > 0 else 0) * '\\quad ')
+
+        self.newline = True
 
     # Visit a parse tree produced by MMADLParser#mmadl.
     def visitMmadl(self, ctx:MMADLParser.MmadlContext):
         head, tail = self.getTexCodeTemplete()
 
         self.code += head + ' $ '
-        res = self.visitChildren(ctx)
+        self.code_list.append(head + ' $ ')
+
+        if self.params.type == ParserParams.TYPE.ALGORITHM:
+            if ctx.header() is not None:
+                self.visit(ctx.header())
+
+        self.visit(ctx.body())
+
         self.code += '$ \n' + tail
-        
-        return res
+        self.code_list.append('$ \n' + tail)
+
+        code = ''
+        for fragment in self.code_list:
+            code += fragment
+
+        self.code = code
+
+        return
 
     # Visit a parse tree produced by MMADLParser#header.
     def visitHeader(self, ctx:MMADLParser.HeaderContext):
@@ -80,12 +111,16 @@ class MMADLTranslatorTexVisitor(MMADLTranslatorVisitor):
 
     # Visit a parse tree produced by MMADLParser#input_params.
     def visitInput_params(self, ctx:MMADLParser.Input_paramsContext):
-        for i in range(len(ctx.param_name())):
-            self.visit(ctx.param_name(i))
-            self.addToken(self.code_printer.printCodeText(ctx.COLON(i)))
-            self.visit(ctx.param_type(i))
-            self.addToken(self.code_printer.printCodeText(ctx.COMMA(i)))
-        
+        return self.visitChildren(ctx)
+
+    # Visit a parse tree produced by MMADLParser#colon.
+    def visitColon(self, ctx:MMADLParser.ColonContext):
+        self.addToken(self.code_printer.print(ctx.COLON()))
+        return
+
+    # Visit a parse tree produced by MMADLParser#comma.
+    def visitComma(self, ctx:MMADLParser.CommaContext):
+        self.addToken(self.code_printer(ctx.COMMA()))
         return
 
     # Visit a parse tree produced by MMADLParser#ensure.
@@ -94,14 +129,9 @@ class MMADLTranslatorTexVisitor(MMADLTranslatorVisitor):
 
         return self.visitChildren(ctx)
 
-
     # Visit a parse tree produced by MMADLParser#output_params.
     def visitOutput_params(self, ctx:MMADLParser.Output_paramsContext):
-        for i in range(len(ctx.param_type())):
-            self.visit(ctx.param_type(i))
-            self.addToken(self.code_printer.print(ctx.COMMA(i)))
-
-        return
+        return self.visitChildren(ctx)
 
     # Visit a parse tree produced by MMADLParser#param_name.
     def visitParam_name(self, ctx:MMADLParser.Param_nameContext):
@@ -219,7 +249,7 @@ class MMADLTranslatorTexVisitor(MMADLTranslatorVisitor):
 
     # Visit a parse tree produced by MMADLParser#number.
     def visitNumber(self, ctx:MMADLParser.NumberContext):
-        self.addToken(ctx.NUMBER())
+        self.addToken(self.code_printer.print(ctx.NUMBER()))
 
     # Visit a parse tree produced by MMADLParser#function_call.
     def visitFunction_call(self, ctx:MMADLParser.Function_callContext):
@@ -260,7 +290,8 @@ class MMADLTranslatorTexVisitor(MMADLTranslatorVisitor):
             self.addToken(self.code_printer.printKeyWord(ctx.ELSE()))
             self.visit(ctx.body()[-1])
 
-        self.addToken(self.code_printer.printKeyWord(ctx.ENDIF()))
+        if self.params.style == ParserParams.STYLE.DOUBLE:
+            self.addToken(self.code_printer.printKeyWord(ctx.ENDIF()))
 
     # Visit a parse tree produced by MMADLParser#loop_operator.
     def visitLoop_operator(self, ctx:MMADLParser.Loop_operatorContext):
@@ -277,7 +308,8 @@ class MMADLTranslatorTexVisitor(MMADLTranslatorVisitor):
 
     # Visit a parse tree produced by MMADLParser#endfor_symbol.
     def visitEndfor_symbol(self, ctx:MMADLParser.Endfor_symbolContext):
-        self.addToken(self.code_printer.printKeyWord(ctx.ENDFOR()))
+        if self.params.style == ParserParams.STYLE.DOUBLE:
+            self.addToken(self.code_printer.printKeyWord(ctx.ENDFOR()))
         return
 
     # Visit a parse tree produced by MMADLParser#while_operator.
@@ -291,7 +323,8 @@ class MMADLTranslatorTexVisitor(MMADLTranslatorVisitor):
 
     # Visit a parse tree produced by MMADLParser#endwhile_symbol.
     def visitEndwhile_symbol(self, ctx:MMADLParser.Endwhile_symbolContext):
-        self.addToken(self.code_printer.printKeyWord(ctx.ENDWHILE()))
+        if self.params.style == ParserParams.STYLE.DOUBLE:
+            self.addToken(self.code_printer.printKeyWord(ctx.ENDWHILE()))
         return
 
     # Visit a parse tree produced by MMADLParser#do_symbol.

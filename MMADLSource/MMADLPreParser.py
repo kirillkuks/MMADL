@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 from argparse import Namespace
-from enum import Enum
 
 import codecs
+
+from ParserParams import ParserParams
 
 
 class MMADLGrammar:
@@ -66,71 +67,8 @@ class Rule:
 
 # Обработать ошибки
 class MMADLPreParser:
-    class ParserParams:
-        class TYPE(Enum):
-            ALGORITHM = 0,
-            FRAGMENT = 1,
-            EXPRESSION = 2
-
-        class TARGET_PLATFORM(Enum):
-            TEX = 0,
-            HTML = 1
-
-        class STYLE(Enum):
-            DOUBLE = 0,
-            PYTHON = 1
-
-        _algorithm: str = 'algorithm'
-        _fragment: str = 'fragment'
-        _expression: str = 'expression'
-
-        _tex = 'tex'
-        _html = 'html'
-
-        _double = 'double'
-        _python = 'python'
-
-        @staticmethod
-        def create(filename: str, type: str, target_platform: str, style: str) -> MMADLPreParser.ParserParams:
-            t = MMADLPreParser.ParserParams.TYPE.ALGORITHM
-            p = MMADLPreParser.ParserParams.TARGET_PLATFORM.TEX
-            s = MMADLPreParser.ParserParams.STYLE.DOUBLE
-
-            if type == MMADLPreParser.ParserParams._algorithm or type is None:
-                t = MMADLPreParser.ParserParams.TYPE.ALGORITHM
-            elif type == MMADLPreParser.ParserParams._fragment:
-                t = MMADLPreParser.ParserParams.TYPE.FRAGMENT
-            elif type == MMADLPreParser.ParserParams._expression:
-                t = MMADLPreParser.ParserParams.TYPE.EXPRESSION
-            else:
-                assert(False)
-
-            if target_platform == MMADLPreParser.ParserParams._tex or target_platform is None:
-                p = MMADLPreParser.ParserParams.TARGET_PLATFORM.TEX
-            elif target_platform == MMADLPreParser.ParserParams._html:
-                p = MMADLPreParser.ParserParams.TARGET_PLATFORM.HTML
-            else:
-                assert(False)
-
-            if style == MMADLPreParser.ParserParams._double or style is None:
-                s = MMADLPreParser.ParserParams.STYLE.DOUBLE
-            elif style == MMADLPreParser.ParserParams._python:
-                s = MMADLPreParser.ParserParams.STYLE.PYTHON
-            else:
-                assert(False)
-
-            return MMADLPreParser.ParserParams(filename, t, p, s)
-
-        def __init__(self, filename: str, type: TYPE, target_platform: TARGET_PLATFORM, style: STYLE) -> None:
-            self._filename = filename
-            self._type = type
-            self._target_platform = target_platform
-            self._style = style
-
     @staticmethod
-    def create(args: Namespace) -> MMADLPreParser:
-        params = MMADLPreParser.ParserParams.create(args.input, args.type, args.platform, args.style)
-
+    def create(params: ParserParams) -> MMADLPreParser:
         return MMADLPreParser(params) if params is not None else None
 
     def __init__(self, params: ParserParams) -> None:
@@ -176,6 +114,9 @@ class MMADLPreParser:
         declaration = self._MMADL_code[open_declaration_ind + self._MMADL_grammar.get_open_declaration_size()
         : close_declaration_ind]
 
+        definition = self._delete_comment(definition)
+        declaration = self._delete_comment(declaration)
+
         declaration = declaration.lstrip(' \t\r\n').rstrip(' \t\r\n')
 
         self._grammar_rules.append(Rule(definition, declaration))
@@ -183,6 +124,16 @@ class MMADLPreParser:
         self._MMADL_code = self._MMADL_code[close_declaration_ind + self._MMADL_grammar.get_close_declaration_size():]
 
         return True
+
+    def _delete_comment(self, s: str) -> str:
+        strings = s.split('~')
+
+        res = ''
+
+        for i in range(len(strings) // 2 + 1):
+            res += strings[2 * i]
+
+        return res
 
     def _build_temp_from_rules(self) -> str:
         for i in range(len(self._grammar_rules) - 1, -1, -1):
