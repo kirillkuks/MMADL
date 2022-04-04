@@ -5,7 +5,8 @@ mmadl
     ;
 
 header
-    : require input_params ensure output_params
+    : require input_params end_of_line*
+    ensure output_params end_of_line*
     ;
 
 require
@@ -23,15 +24,30 @@ output_params
     ;
 
 param_name
-    : STRING
+    : STRING (index)*
     ;
+
 param_type
     : POINTER* STRING
     ;
 
+index
+    : OPENBRACKET indexed_expression CLOSEBRACKET
+    ;
+
+indexed_expression
+    : param_name
+    | expression
+    ;
+
 body
     : (operators_list
-    | comment)*
+    | comment
+    | end_of_line)*
+    ;
+
+end_of_line
+    : EOL
     ;
 
 comment
@@ -75,6 +91,7 @@ exit_operator
 exit_value
     : expression
     | condition
+    | param_name
     ;
 loop_control_operator
     : CONTINUE
@@ -82,11 +99,20 @@ loop_control_operator
     ;
 
 math_expression
-    : (MATH_EXPRESSION_SIGN STRING MATH_EXPRESSION_SIGN)
-    | NUMBER
+    : math_string
+    | number
     ;
+
+math_string
+    : MATH_STRING
+    ;
+
+number
+    : NUMBER
+    ;
+
 function_call
-    : STRING OPENPARENTHESIS variables_list CLOSEPARENTHESIS
+    : param_name OPENPARENTHESIS variables_list CLOSEPARENTHESIS
     ;
 
 variables_list
@@ -120,14 +146,32 @@ loop_operator
     ;
 
 for_operator 
-    : FOR for_range DO
+    : for_symbol for_range do_symbol
     body
-    ENDFOR
+    endfor_symbol
     ;
+for_symbol
+    : FOR
+    ;
+endfor_symbol
+    : ENDFOR
+    ;
+
 while_operator
-    : WHILE condition DO
+    : while_symbol condition do_symbol
     body
-    ENDWHILE
+    endwhile_symbol
+    ;
+while_symbol
+    : WHILE
+    ;
+
+do_symbol
+    : DO
+    ;
+
+endwhile_symbol
+    : ENDWHILE
     ;
 
 for_range
@@ -139,7 +183,21 @@ include
     : param_name IN math_expression
     ;
 iteration
-    : param_name FROM math_expression (TO | DOWNTO) math_expression
+    : param_name from_symbol iteration_elem iteration_end iteration_elem
+    ;
+
+from_symbol
+    : FROM
+    ;
+
+iteration_end
+    : TO
+    | DOWNTO
+    ;
+
+iteration_elem
+    : math_expression
+    | param_name
     ;
 
 condition
@@ -147,7 +205,7 @@ condition
     ;
 simple_condition
     : (OPENPARENTHESIS condition CLOSEPARENTHESIS)
-    | (bool_value | math_expression | order_relation)
+    | (bool_value | math_expression | order_relation | include)
     ;
 logic_connective
     : AND
@@ -271,6 +329,15 @@ CLOSEPARENTHESIS
     : ')'
     ;
 
+OPENBRACKET
+    : '['
+    ; 
+
+CLOSEBRACKET
+    : ']'
+    ;
+
+
 AND
     : 'and'
     ;
@@ -317,8 +384,12 @@ CLOSECOMMENT
     : '<\\ce>'
     ;
 
+EOL
+    : '\n'
+    ;
+
 WS
-    : [ \t\r\n]+ -> skip
+    : [ \t\r]+ -> skip
     ;
 
 NUMBER
@@ -326,8 +397,18 @@ NUMBER
     | [0]
     ;
 STRING
-    : [A-Za-z][A-Za-z0-9_.]*
+    : [A-Za-z0-9][A-Za-z0-9_.]*
     ;
 CUSTOM_STRING
     : [a-zA-Z0-9\u0410-\u042F\u0430-\u044F]+
+    ;
+MATH_STRING
+    : '$'(
+        'a' .. 'z'
+        | 'A' .. 'Z'
+        | '0' .. '9'
+        | '+' | '-' | '*' | '%' | '\\'
+        | ' '
+        | '[' | ']' | '(' | ')'
+    )*'$'
     ;

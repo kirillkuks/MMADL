@@ -10,7 +10,7 @@
 	pa <- a; pb <- b <\end>
 
 <Основной цикл> := <\begin>
-	while pa != nil & pb != nil do
+	while pa != nil and pb != nil do
 		if <Случай 1> then
 			<Элемент A отсутствует в B>
 		elseif <Случай 2> then

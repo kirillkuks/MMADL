@@ -149,7 +149,7 @@ class MMADLPreParser:
             next = self._find_next_rule()
 
         temp_code = self._build_temp_from_rules()
-        return temp_code
+        return temp_code[len(temp_code) - len(temp_code.lstrip(' \t\r\n')):]
 
     def _find_next_rule(self) -> bool:
         open_definition_ind = self._MMADL_code.find(self._MMADL_grammar.get_open_definition())
@@ -175,6 +175,8 @@ class MMADLPreParser:
         delimiter = self._MMADL_code[delimiter_ind : delimiter_ind + self._MMADL_grammar.get_delimiter_size()]
         declaration = self._MMADL_code[open_declaration_ind + self._MMADL_grammar.get_open_declaration_size()
         : close_declaration_ind]
+
+        declaration = declaration.lstrip(' \t\r\n').rstrip(' \t\r\n')
 
         self._grammar_rules.append(Rule(definition, declaration))
 

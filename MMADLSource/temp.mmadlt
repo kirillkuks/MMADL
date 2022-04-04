@@ -1,24 +1,20 @@
-
-	Вход: a: \pointer elem_t, b: \pointer elem_t
-	Выход: bool
-	
-	pa <- a; pb <- b 
-	
-	while pa != nil & pb != nil do
-		if 
-	pa.i < pb.i  then
-			
-	return False 
-		elseif 
-	pa.i > pb.i  then
-			
-	pb <- pb.n 
-		else
-			
-	pa <- pa.n
-	pb <- pb.n 
-		end if
-	end while 
-	<\cb> Простотекст <\ce>
-	
-	return pa = nil  
+Вход: n: int, m: int
+	Выход: arrayarray
+	for i from 1 to $ m $ do
+		A [i] <- i
+	end for
+	if m = n then
+		return A [1..n]
+	end if
+	p <- n
+	while p >= 1 do
+	yield A [1..n]
+	if A [n] = m then
+		p <- $ p - 1 $
+	else
+		p <- n
+	end if
+	for i from n downto p do
+		A [i] <- $ A [p] + i - p + 1 $
+	end for
+	end while

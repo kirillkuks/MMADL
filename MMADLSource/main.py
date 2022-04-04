@@ -36,6 +36,7 @@ def main(parser_args: argparse.Namespace):
 
     retranslator = MMADLTranslatorTex('temp.mmadlt')
     # retranslator = MMADLRetranslator('temp.mmadlt')
+    # retranslator = MMADLRetranslator('examples\\test.txt')
     code = retranslator.translate()
     print(code)
 
