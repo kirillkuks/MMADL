@@ -120,7 +120,7 @@ class MMADLTranslatorTexVisitor(MMADLTranslatorVisitor):
 
     # Visit a parse tree produced by MMADLParser#comma.
     def visitComma(self, ctx:MMADLParser.CommaContext):
-        self.addToken(self.code_printer(ctx.COMMA()))
+        self.addToken(self.code_printer.print(ctx.COMMA()))
         return
 
     # Visit a parse tree produced by MMADLParser#ensure.

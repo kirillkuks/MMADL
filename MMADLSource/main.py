@@ -39,12 +39,11 @@ def main(parser_args: argparse.Namespace):
         f.write(temp_code)
 
     translator = MMADLTranslatorTex('temp.mmadlt', params)
-    # retranslator = MMADLRetranslator('temp.mmadlt', params)
+    # translator = MMADLRetranslator('temp.mmadlt', params)
     # retranslator = MMADLRetranslator('examples\\test.txt')
     code = translator.translate()
-    print(code)
 
-    translator.save(generate_pdf=True)
+    # translator.save(generate_pdf=False)
 
     with codecs.open('examples\\output.txt', 'w', 'utf_8') as f:
         f.write(code)

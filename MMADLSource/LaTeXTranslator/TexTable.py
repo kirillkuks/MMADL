@@ -18,7 +18,6 @@ class TexTable:
 
     def getToken(self, token: TerminalNode) -> str:
         s = token.__str__()
-        print(s)
         assert s in self.table
 
         return self.table[s]

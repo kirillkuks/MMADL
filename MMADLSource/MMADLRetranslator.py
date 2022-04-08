@@ -10,4 +10,4 @@ class MMADLRetranslator(MMADLTranslator):
     def __init__(self, path_to_source: str, params: ParserParams) -> None:
         super().__init__(path_to_source, params)
 
-        self.visitor = MMADLRetranslatorVisitor()
+        self.visitor = MMADLRetranslatorVisitor(params)

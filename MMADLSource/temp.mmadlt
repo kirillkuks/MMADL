@@ -1,7 +1,20 @@
-Вход: U: set_t <\cb> КонечноеЧастичноУпорядоченноеМножество <\ce>
-    Выход: set_t <\cb> ЛинейноУпорядоченноеМножество <\ce>
-    while $ U \neq \emptyset $ do
-    m <- min(U)
-    yield m
-    U <- $ U - m $
-    end while
+Вход: n: int, m: int
+	Выход: arrayarray
+	for i from 1 to $ m $ do
+		A [i] <- i
+	end for
+	if m = n then
+		return A [1..n]
+	end if
+	p <- n
+	while p >= 1 do
+	yield A [1..n]
+	if A [n] = m then
+		p <- $ p - 1 $
+	else
+		p <- n
+	end if
+	for i from n downto p do
+		A [i] <- $ A [p] + i - p + 1 $
+	end for
+	end while

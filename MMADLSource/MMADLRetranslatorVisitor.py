@@ -3,12 +3,13 @@ from antlr4 import *
 
 from ANTLR.MMADLParser import MMADLParser
 from MMADLTranslatorVisitor import MMADLTranslatorVisitor
+from ParserParams import ParserParams
 
 # This class defines a complete generic visitor for a parse tree produced by MMADLParser.
 
 class MMADLRetranslatorVisitor(MMADLTranslatorVisitor):
-    def __init__(self) -> None:
-        super().__init__()
+    def __init__(self, params: ParserParams) -> None:
+        super().__init__(params)
 
     def addToken(self, token: TerminalNode) -> None:
         if token is not None:
@@ -37,14 +38,17 @@ class MMADLRetranslatorVisitor(MMADLTranslatorVisitor):
 
     # Visit a parse tree produced by MMADLParser#input_params.
     def visitInput_params(self, ctx:MMADLParser.Input_paramsContext):
-        for i in range(len(ctx.param_name())):
-            self.visit(ctx.param_name(i))
-            self.addToken(ctx.COLON(i))
-            self.visit(ctx.param_type(i))
-            self.addToken(ctx.COMMA(i))
-        
-        # return self.visitChildren(ctx)
+        return self.visitChildren(ctx)
 
+    # Visit a parse tree produced by MMADLParser#colon.
+    def visitColon(self, ctx:MMADLParser.ColonContext):
+        self.addToken(self.addToken(ctx.COLON()))
+        return
+
+    # Visit a parse tree produced by MMADLParser#comma.
+    def visitComma(self, ctx:MMADLParser.CommaContext):
+        self.addToken(self.addToken(ctx.COMMA()))
+        return
 
     # Visit a parse tree produced by MMADLParser#ensure.
     def visitEnsure(self, ctx:MMADLParser.EnsureContext):
@@ -55,11 +59,7 @@ class MMADLRetranslatorVisitor(MMADLTranslatorVisitor):
 
     # Visit a parse tree produced by MMADLParser#output_params.
     def visitOutput_params(self, ctx:MMADLParser.Output_paramsContext):
-        for i in range(len(ctx.param_type())):
-            self.visit(ctx.param_type(i))
-            self.addToken(ctx.COMMA(i))
-
-        # return self.visitChildren(ctx)
+        return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by MMADLParser#param_name.
