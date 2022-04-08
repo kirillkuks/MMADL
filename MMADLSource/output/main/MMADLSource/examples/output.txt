@@ -1,0 +1,91 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{shorttoc}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{float}
+
+\definecolor{linkcolor}{HTML}{000000}
+\definecolor{urlcolor}{HTML}{0085FF}
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+
+\begin{document}
+\noindent
+ $ \textbf{\textcolor{blue}{Вход:}} \  \textcolor{black}{n} \  \textcolor{black}{:} \  \textbf{\textcolor{blue}{int}} \  \textcolor{black}{,} \  \textcolor{black}{m} \  \textcolor{black}{:} \  \textbf{\textcolor{blue}{int}} \   $ 
+\newline
+ $ \null \textbf{\textcolor{blue}{Выход:}} \  \textbf{\textcolor{blue}{arrayarray}} \   $ 
+\newline
+ $ \null $ 
+\newline
+ $ \null \textbf{\textcolor{blue}{for}} \  \textcolor{black}{i} \  \textbf{\textcolor{blue}{from}} \  1 \textbf{\textcolor{blue}{to}} \   m  \  \textbf{\textcolor{blue}{do}} \  $ 
+\newline
+ $ \null \quad $ 
+\newline
+ $ \null \quad \textcolor{black}{A} \  \textcolor{black}{[} \  \textcolor{black}{i} \  \textcolor{black}{]} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{i} \   $ 
+\newline
+ $ \null \quad $ 
+\newline
+ $ \null \textbf{\textcolor{blue}{end for}} \   $ 
+\newline
+ $ \null \textbf{\textcolor{blue}{if}} \  \textcolor{black}{m} \  \textcolor{black}{=} \  \textcolor{black}{n} \  \textbf{\textcolor{blue}{then}} \  $ 
+\newline
+ $ \null \quad $ 
+\newline
+ $ \null \quad \textbf{\textcolor{blue}{return}} \  \textcolor{black}{A} \  \textcolor{black}{[} \  \textcolor{black}{1..n} \  \textcolor{black}{]} \    $ 
+\newline
+ $ \null \quad $ 
+\newline
+ $ \null \textbf{\textcolor{blue}{end if}} \   $ 
+\newline
+ $ \null \textcolor{black}{p} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{n} \   $ 
+\newline
+ $ \null \textbf{\textcolor{blue}{while}} \  \textcolor{black}{p} \  \textcolor{black}{\geq} \  1 \textbf{\textcolor{blue}{do}} \  $ 
+\newline
+ $ \null \quad $ 
+\newline
+ $ \null \quad \textbf{\textcolor{blue}{yield}} \  \textcolor{black}{A} \  \textcolor{black}{[} \  \textcolor{black}{1..n} \  \textcolor{black}{]} \    $ 
+\newline
+ $ \null \quad \textbf{\textcolor{blue}{if}} \  \textcolor{black}{A} \  \textcolor{black}{[} \  \textcolor{black}{n} \  \textcolor{black}{]} \  \textcolor{black}{=} \  \textcolor{black}{m} \  \textbf{\textcolor{blue}{then}} \  $ 
+\newline
+ $ \null \quad \quad $ 
+\newline
+ $ \null \quad \quad \textcolor{black}{p} \  \textcolor{black}{\leftarrow} \   p - 1  \   $ 
+\newline
+ $ \null \quad \quad $ 
+\newline
+ $ \null \quad \textbf{\textcolor{blue}{else}} \  $ 
+\newline
+ $ \null \quad \quad $ 
+\newline
+ $ \null \quad \quad \textcolor{black}{p} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{n} \   $ 
+\newline
+ $ \null \quad \quad $ 
+\newline
+ $ \null \quad \textbf{\textcolor{blue}{end if}} \   $ 
+\newline
+ $ \null \quad \textbf{\textcolor{blue}{for}} \  \textcolor{black}{i} \  \textbf{\textcolor{blue}{from}} \  \textcolor{black}{n} \  \textbf{\textcolor{blue}{downto}} \  \textcolor{black}{p} \  \textbf{\textcolor{blue}{do}} \  $ 
+\newline
+ $ \null \quad \quad $ 
+\newline
+ $ \null \quad \quad \textcolor{black}{A} \  \textcolor{black}{[} \  \textcolor{black}{i} \  \textcolor{black}{]} \  \textcolor{black}{\leftarrow} \   A [p] + i - p + 1  \   $ 
+\newline
+ $ \null \quad \quad $ 
+\newline
+ $ \null \quad \textbf{\textcolor{blue}{end for}} \   $ 
+\newline
+ $ \null \quad $ 
+\newline
+ $ \null \textbf{\textcolor{blue}{end while}} \   $ 
+\newline
+ $ \null $ 
+\end{document}

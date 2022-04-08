@@ -1,0 +1,14 @@
+
+    Вход: R: \pointer array
+    Выход: array
+    
+    T <- R 
+    
+    for i \in 1..n do
+        for j \in 1..n do
+            for k \in 1..n do
+                T[j][k] <- 
+    $T[j][k] + T[i][j] * T[i][k]$ 
+            end for
+        end for
+    end for  

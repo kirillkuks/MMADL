@@ -1,0 +1,50 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{shorttoc}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{float}
+
+\definecolor{linkcolor}{HTML}{000000}
+\definecolor{urlcolor}{HTML}{0085FF}
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+
+\begin{document}
+ $ \textbf{\textcolor{blue}{Вход:}} \  \textcolor{black}{R} \  \textcolor{black}{:} \  \uparrow \  \textbf{\textcolor{blue}{array}} \   $ 
+\newline
+ $ \null \textbf{\textcolor{blue}{Выход:}} \  \textbf{\textcolor{blue}{array}} \   $ 
+\newline
+ $ \null \textcolor{black}{T} \  \textcolor{black}{\leftarrow} \  \textcolor{black}{R} \   $ 
+\newline
+ $ \null for \textcolor{black}{i} \    \textcolor{black}{1..n} \    do $ 
+\newline
+ $ \null for \textcolor{black}{j} \    \textcolor{black}{1..n} \    do $ 
+\newline
+ $ \null for \textcolor{black}{k} \    \textcolor{black}{1..n} \    do $ 
+\newline
+ $ \null \textcolor{black}{T[j][k]} \  \textcolor{black}{\leftarrow} \    \textcolor{black}{T[j][k]} \  \textcolor{black}{+} \  \textcolor{black}{T[i][j]} \  \textcolor{black}{*} \  \textcolor{black}{T[i][k]} \     $ 
+\newline
+ $ \null end for $ 
+\newline
+ $ \null  $ 
+\newline
+ $ \null end for $ 
+\newline
+ $ \null  $ 
+\newline
+ $ \null end for $ 
+\newline
+ $ \null  $ 
+\newline
+ $ \null $ 
+\end{document}

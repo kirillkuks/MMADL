@@ -5,9 +5,15 @@ class TexTable:
     def __init__(self) -> None:
         self.table = {
             '\\pointer' : '\\uparrow',
-            '<\\ce>' : '/*',
-            '<\\cb>' : '*/',
-            '<-' : '\\leftarrow'
+            '<\\cb>' : '/*',
+            '<\\ce>' : '*/',
+            '<-' : '\\leftarrow',
+            '=' : '=',
+            '!=' : '\\neq',
+            '>' : '>',
+            '<' : '<',
+            '>=' : '\\geq',
+            '<=' : '\\leq'
         }
 
     def getToken(self, token: TerminalNode) -> str:

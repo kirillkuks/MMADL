@@ -60,15 +60,19 @@ class MMADLTranslatorHTMLVisitor(MMADLTranslatorVisitor):
     def visitInput_params(self, ctx: MMADLParser.Input_paramsContext):
         if ctx.param_name() is not None:
             self.visit(ctx.param_name(0))
-            self.add_code_lexem(ctx.COLON(0))
+            self.visit(ctx.colon(0))
             self.visit(ctx.param_type(0))
 
-        for i in range(len(ctx.COMMA())):
-            self.add_code_lexem(ctx.COMMA(i))
+        for i in range(len(ctx.comma())):
+            self.visit(ctx.comma(i))
             self.visit(ctx.param_name(i + 1))
-            self.add_code_lexem(ctx.COLON(i + 1))
+            self.visit(ctx.colon(i))
             self.visit(ctx.param_type(i + 1))
         self.add_new_line()
+
+    def visitColon(self, ctx: MMADLParser.ColonContext): self.add_code_lexem(ctx.COLON())
+
+    def visitComma(self, ctx: MMADLParser.CommaContext): self.add_code_lexem(ctx.COMMA())
 
     def visitEnsure(self, ctx: MMADLParser.EnsureContext): self.add_key_word(ctx.OUTPUT())
 
@@ -76,8 +80,8 @@ class MMADLTranslatorHTMLVisitor(MMADLTranslatorVisitor):
         if ctx.param_type() is not None:
             self.visit(ctx.param_type(0))
 
-        for i in range(len(ctx.COMMA())):
-            self.add_code_lexem(ctx.COMMA(i))
+        for i in range(len(ctx.comma())):
+            self.add_code_lexem(ctx.comma(i))
             self.visit(ctx.param_type(i + 1))
 
         self.add_new_line()
@@ -92,23 +96,18 @@ class MMADLTranslatorHTMLVisitor(MMADLTranslatorVisitor):
                 self.visit(ctx.index(i))
 
     def visitParam_type(self, ctx: MMADLParser.Param_typeContext):
-        if ctx.POINTER() is not None:
+        if ctx.POINTER() is not None and len(ctx.POINTER()) > 0:
             self.add_code_lexem("&#x2191")
-            if ctx.composite_param_type() is not None:
-                self.visit(ctx.composite_param_type())
-            else:
-                self.add_code_lexem(ctx.STRING())
-        else:
-            self.add_code_lexem(ctx.STRING())
+        self.add_code_lexem(ctx.STRING())
 
-    def visitComposite_param_type(self, ctx: MMADLParser.Composite_param_typeContext):
+    '''def visitComposite_param_type(self, ctx: MMADLParser.Composite_param_typeContext):
         self.add_code_lexem(ctx.LE())
         self.visit(ctx.param_type(0))
         if ctx.COMMA() is not None:
             for i in range(len(ctx.COMMA())):
                 self.add_code_lexem(ctx.COMMA(i))
                 self.visit(ctx.param_type(i + 1))
-        self.add_code_lexem(ctx.GT())
+        self.add_code_lexem(ctx.GT())'''
 
     def visitComment(self, ctx: MMADLParser.CommentContext):
         self.add_comment(ctx.CUSTOM_STRING())
@@ -133,7 +132,7 @@ class MMADLTranslatorHTMLVisitor(MMADLTranslatorVisitor):
         self.add_code_lexem("&#8592")
         if ctx.expression() is not None:
             self.visit(ctx.expression())
-        else:
+        elif ctx.param_name(1) is not None:
             self.visit(ctx.param_name(1))
 
     def visitControl_operator(self, ctx: MMADLParser.Control_operatorContext): self.visitChildren(ctx)
@@ -143,7 +142,24 @@ class MMADLTranslatorHTMLVisitor(MMADLTranslatorVisitor):
         self.add_code_lexem(ctx.COLON(0))
         self.visit(ctx.param_type(0))
 
-    def visitExpression(self, ctx: MMADLParser.ExpressionContext): self.visitChildren(ctx)
+    def visitExpression(self, ctx: MMADLParser.ExpressionContext):
+        if ctx.math_expression() is not None:
+            self.visit(ctx.math_expression())
+        elif ctx.known_lexem() is not None:
+            self.visit(ctx.known_lexem())
+        else:
+            self.visit(ctx.function_call())
+
+    def visitMath_expression(self, ctx: MMADLParser.Math_expressionContext):
+        if ctx.math_string() is not None:
+            self.visit(ctx.math_string())
+        else:
+            print(str(ctx.number()))
+            self.visit(ctx.number())
+
+    def visitMath_string(self, ctx: MMADLParser.Math_stringContext):
+        string = str(ctx.MATH_STRING())
+        self.add_code_lexem('<i>' + string[1: len(string) - 1] + "</i>")
 
     def visitExit_operator(self, ctx: MMADLParser.Exit_operatorContext):
         if ctx.RETURN() is not None:
@@ -164,17 +180,11 @@ class MMADLTranslatorHTMLVisitor(MMADLTranslatorVisitor):
         else:
             self.add_code_lexem(ctx.BREAK(0))
 
-    def visitMath_expression(self, ctx: MMADLParser.Math_expressionContext):
-        if ctx.MATH_EXPRESSION_SIGN() is not None and len(ctx.MATH_EXPRESSION_SIGN()) > 0:
-            self.visit(ctx.param_name(0))
-            if ctx.MATH_BINARY_OPERAIONS() is not None and len(ctx.MATH_BINARY_OPERAIONS()) > 0:
-                for i in range(len(ctx.MATH_BINARY_OPERAIONS())):
-                    self.add_code_lexem(ctx.MATH_BINARY_OPERAIONS(i))
-                    self.visit(ctx.param_name(i + 1))
-        elif ctx.CUSTOM_STRING() is not None:
-            self.add_code_lexem(ctx.CUSTOM_STRING())
-        else:
-            self.add_code_lexem(ctx.NUMBER())
+    #def visitMath_expression(self, ctx: MMADLParser.Math_expressionContext): self.visitChildren(ctx)
+
+    #def visitMath_string(self, ctx: MMADLParser.Math_stringContext): self.add_code_lexem(ctx.MATH_STRING())
+
+    def visitNumber(self, ctx: MMADLParser.NumberContext): self.add_code_lexem(ctx.NUMBER())
 
     def visitFunction_call(self, ctx: MMADLParser.Function_callContext):
         self.add_code_lexem(ctx.STRING())
@@ -233,50 +243,60 @@ class MMADLTranslatorHTMLVisitor(MMADLTranslatorVisitor):
     def visitLoop_operator(self, ctx: MMADLParser.Loop_operatorContext): self.visitChildren(ctx)
 
     def visitFor_operator(self, ctx: MMADLParser.For_operatorContext):
-        self.add_key_word(ctx.FOR())
+        self.visit(ctx.for_symbol())
         self.visit(ctx.for_range())
-        self.add_key_word(ctx.DO())
+        self.visit(ctx.do_symbol())
         self.intent += 1
         self.add_new_line()
         self.visit(ctx.body())
         self.intent -= 1
         self.delete_last_line()
         self.add_new_line()
-        self.add_key_word(ctx.ENDFOR())
+        self.visit(ctx.endfor_symbol())
 
-    def visitWhile_operator(self, ctx: MMADLParser.While_operatorContext):
-        self.add_key_word(ctx.WHILE())
-        self.visit(ctx.condition())
-        self.add_key_word(ctx.DO())
-        self.intent += 1
-        self.add_new_line()
-        self.visit(ctx.body())
-        self.intent -= 1
-        self.delete_last_line()
-        self.add_new_line()
-        self.add_key_word(ctx.ENDWHILE())
+    def visitFor_symbol(self, ctx: MMADLParser.For_symbolContext): self.add_key_word(ctx.FOR())
+
+    def visitEndfor_symbol(self, ctx: MMADLParser.Endfor_symbolContext): self.add_key_word(ctx.ENDFOR())
 
     def visitFor_range(self, ctx: MMADLParser.For_rangeContext): self.visitChildren(ctx)
 
+    def visitWhile_operator(self, ctx: MMADLParser.While_operatorContext):
+        self.visit(ctx.while_symbol())
+        self.visit(ctx.condition())
+        self.visit(ctx.do_symbol())
+        self.intent += 1
+        self.add_new_line()
+        self.visit(ctx.body())
+        self.intent -= 1
+        self.delete_last_line()
+        self.add_new_line()
+        self.visit(ctx.endwhile_symbol())
+
+    def visitWhile_symbol(self, ctx: MMADLParser.While_symbolContext): self.add_key_word(ctx.WHILE())
+
+    def visitEndwhile_symbol(self, ctx: MMADLParser.Endwhile_symbolContext): self.add_key_word(ctx.ENDWHILE())
+
     def visitIndex(self, ctx: MMADLParser.IndexContext):
-        self.add_code_lexem(ctx.OPEN_BRACKET())
-        self.add_code_lexem(ctx.STRING())
-        self.add_code_lexem(ctx.CLOSE_BRACKET())
+        self.add_code_lexem(ctx.OPENBRACKET())
+        self.visit(ctx.indexed_expression())
+        self.add_code_lexem(ctx.CLOSEBRACKET())
 
     def visitInclude(self, ctx: MMADLParser.IncludeContext):
         self.visit(ctx.param_name())
         self.add_code_lexem("&#8712")
         self.visit(ctx.math_expression())
 
-    def visitIteration(self, ctx: MMADLParser.IterationContext):
-        self.visit(ctx.param_name())
-        self.add_key_word(ctx.FROM())
-        self.visit(ctx.math_expression(0))
+    def visitIteration(self, ctx: MMADLParser.IterationContext): self.visitChildren(ctx)
+
+    def visitFrom_symbol(self, ctx: MMADLParser.From_symbolContext): self.add_key_word(ctx.FROM())
+
+    def visitIteration_end(self, ctx: MMADLParser.Iteration_endContext):
         if ctx.TO() is not None:
             self.add_key_word(ctx.TO())
         else:
             self.add_key_word(ctx.DOWNTO())
-        self.visit(ctx.math_expression(1))
+
+    def visitIteration_elem(self, ctx: MMADLParser.Iteration_elemContext): self.visitChildren(ctx)
 
     def visitCondition(self, ctx: MMADLParser.ConditionContext):
         self.visit(ctx.simple_condition(0))
