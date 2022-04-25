@@ -43,7 +43,7 @@ def main(parser_args: argparse.Namespace):
     # retranslator = MMADLRetranslator('examples\\test.txt')
     code = translator.translate()
 
-    # translator.save(generate_pdf=False)
+    translator.save(generate_pdf=False)
 
     with codecs.open('examples\\output.txt', 'w', 'utf_8') as f:
         f.write(code)

@@ -12,28 +12,30 @@ from LaTeXTranslator.TexTable import TexTable
 
 
 class TexCodePrinter:
-    def __init__(self, code_color: str = 'black', key_word_color: str = 'blue', comment_color: str = 'green') -> None:
+    def __init__(self, code_color: str = 'black', key_word_color: str = 'blue', comment_color: str = 'green', string_color: str = 'cyan') -> None:
         self.code_color = code_color
         self.key_word_color = key_word_color
         self.comment_color = comment_color
+        self.string_color = string_color
 
     def print(self, token: TerminalNode) -> str:
         return token.__str__() + ' \ ' if token is not None else ''
 
     def printCodeText(self, token: TerminalNode) -> str:
-        if token is None:
-            return None
+        if token is None: return None
         return '\\textcolor{' + self.code_color + '}{' + self._to_tex_string(token.__str__()) + '} \ '
 
     def printKeyWord(self, token: TerminalNode) -> str:
-        if token is None:
-            return None
+        if token is None: return None
         return '\\textbf{\\textcolor{' + self.key_word_color + '}{' + self._to_tex_string(token.__str__()) + '}} \ '
 
     def printComment(self, token: TerminalNode) -> str:
-        if token is None:
-            return None
+        if token is None: return None
         return '\\textsl{\\textcolor{' + self.comment_color + '}{' + self._to_tex_string(token.__str__()) + '}} \ '
+
+    def printString(self, token: TerminalNode) -> str:
+        if token is None: return None
+        return '\\textsl{\\textcolor{' + self.string_color + '}{' + self._to_tex_string(token.__str__()) + '}} \ '
 
     def _to_tex_string(self, s: str) -> str:
         return s.replace('_', '\\_')
@@ -251,8 +253,19 @@ class MMADLTranslatorTexVisitor(MMADLTranslatorVisitor):
     def visitNumber(self, ctx:MMADLParser.NumberContext):
         self.addToken(self.code_printer.print(ctx.NUMBER()))
 
+    # Visit a parse tree produced by MMADLParser#char_string.
+    def visitChar_string(self, ctx:MMADLParser.Char_stringContext):
+        self.addToken(self.code_printer.printString(ctx.CHAR_STRING().__str__() + '\\ '))
+
     # Visit a parse tree produced by MMADLParser#function_call.
     def visitFunction_call(self, ctx:MMADLParser.Function_callContext):
+        self.visit(ctx.param_name())
+        self.addToken(self.code_printer.print(ctx.OPENPARENTHESIS()))
+        self.visit(ctx.variables_list())
+        self.addToken(self.code_printer.print(ctx.CLOSEPARENTHESIS()))
+
+    # Visit a parse tree produced by MMADLParser#right_variable.
+    def visitRight_variable(self, ctx:MMADLParser.Right_variableContext):
         return self.visitChildren(ctx)
 
     # Visit a parse tree produced by MMADLParser#variables_list.
@@ -266,6 +279,7 @@ class MMADLTranslatorTexVisitor(MMADLTranslatorVisitor):
 
     # Visit a parse tree produced by MMADLParser#bool_value.
     def visitBool_value(self, ctx:MMADLParser.Bool_valueContext):
+        self.addToken(self.code_printer.printKeyWord(ctx.getText()))
         return self.visitChildren(ctx)
 
     # Visit a parse tree produced by MMADLParser#composite_operator.

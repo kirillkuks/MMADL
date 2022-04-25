@@ -242,12 +242,30 @@ class MMADLListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MMADLParser#char_string.
+    def enterChar_string(self, ctx:MMADLParser.Char_stringContext):
+        pass
+
+    # Exit a parse tree produced by MMADLParser#char_string.
+    def exitChar_string(self, ctx:MMADLParser.Char_stringContext):
+        pass
+
+
     # Enter a parse tree produced by MMADLParser#function_call.
     def enterFunction_call(self, ctx:MMADLParser.Function_callContext):
         pass
 
     # Exit a parse tree produced by MMADLParser#function_call.
     def exitFunction_call(self, ctx:MMADLParser.Function_callContext):
+        pass
+
+
+    # Enter a parse tree produced by MMADLParser#right_variable.
+    def enterRight_variable(self, ctx:MMADLParser.Right_variableContext):
+        pass
+
+    # Exit a parse tree produced by MMADLParser#right_variable.
+    def exitRight_variable(self, ctx:MMADLParser.Right_variableContext):
         pass
 
 

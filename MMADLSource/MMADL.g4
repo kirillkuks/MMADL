@@ -110,13 +110,22 @@ math_string
 number
     : NUMBER
     ;
+char_string
+    : CHAR_STRING
+    ;
 
 function_call
     : param_name OPENPARENTHESIS variables_list CLOSEPARENTHESIS
     ;
 
+right_variable
+    : char_string
+    | param_name
+    | number
+    ;
+
 variables_list
-    : (param_name COMMA?)*
+    : (right_variable COMMA?)*
     ;
 
 known_lexem
@@ -408,6 +417,9 @@ STRING
     ;
 CUSTOM_STRING
     : [a-zA-Z0-9\u0410-\u042F\u0430-\u044F]+
+    ;
+CHAR_STRING
+    : '"' STRING '"'
     ;
 MATH_STRING
     : '$'(

@@ -139,8 +139,18 @@ class MMADLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MMADLParser#char_string.
+    def visitChar_string(self, ctx:MMADLParser.Char_stringContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by MMADLParser#function_call.
     def visitFunction_call(self, ctx:MMADLParser.Function_callContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MMADLParser#right_variable.
+    def visitRight_variable(self, ctx:MMADLParser.Right_variableContext):
         return self.visitChildren(ctx)
 
 

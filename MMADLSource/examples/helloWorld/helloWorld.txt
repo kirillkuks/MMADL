@@ -1,0 +1,9 @@
+<Программа> := <\begin>
+    <Hello world>
+    <\end>
+
+<Hello world> := <\begin>
+    if True then
+        printf("HelloWorld")
+    end if
+    <\end>
